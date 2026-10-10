@@ -18,8 +18,9 @@ Ningún agente debe resolver estos puntos por su cuenta. Al decidir uno: muével
 - [ ] Proveedor de push/correo y crash reporting.
 - [ ] Offline: solo caché de lectura o escritura offline del chat.
 - [ ] Versiones mínimas de Android/iOS.
-- [ ] Monorepo (`app/` + `backend/`) vs dos repos (ADR-0002 dice repo separado). Monorepo simplifica contrato, CI y contexto para agentes con 1 desarrollador.
-- [ ] Bundle id / dominio base (hoy `com.example.sentia2`) — necesario para flavors en Etapa 0.
+- [ ] URLs de API de staging/prod (dependen del hosting); hoy son placeholders `.invalid` en `app/lib/core/config/app_config.dart`.
+- [x] Monorepo (`app/` + `backend/`) → [ADR-0005](adr/0005-monorepo.md).
+- [x] Bundle id base: `com.sentia.app` (dev: `.dev`, staging: `.staging`). Cambiarlo después de publicar en tiendas no es posible.
 - [ ] Feature flags en MVP: config simple por entorno vs tabla `feature_flags` (prevista para Etapa 5).
 
 ## Clínica / ética

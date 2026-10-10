@@ -2,6 +2,37 @@
 
 Este documento registra los cambios, decisiones arquitectónicas y comandos utilizados en el proyecto para mantener un control total y facilitar el aprendizaje.
 
+## 2026-10-10 - Etapa 0: fundaciones
+
+### Decisiones
+- **Monorepo** `app/` + `backend/` (ADR-0005). **Bundle id** `com.sentia.app` (+ `.dev`, `.staging`).
+- **Flutter 3.47.5** (antes 3.35.0). Riverpod 3, freezed 4, go_router 18, very_good_analysis 11, logger.
+- Cliente de API generado con **openapi-generator (dart-dio)** en `app/packages/sentia_api`.
+- Textos heredados pasan a ARB al reescribir cada pantalla; el código nuevo ya usa ARB.
+
+### Backend (`backend/`)
+NestJS 11, config validada con zod, helmet, CORS cerrado, prefijo `/v1`, pino con `traceId` y redacción, formato de error común, Prisma 7 (sin modelos), `GET /v1/health`, Swagger en `/docs`, `openapi.yaml`, docker-compose con pgvector. 4 tests unitarios + 3 e2e.
+
+### App (`app/`)
+- Reorganizada a feature-first (`app/`, `core/`, `features/`, `shared/`, `l10n/`). Código muerto eliminado (capa de datos de ánimo sobre `SharedPreferences`, que nunca se conectó; modelos y repos de chat sin uso).
+- Flavors Android dev/staging/prod (`main_<flavor>.dart`), HTTP en claro solo en dev hacia 10.0.2.2.
+- `Result`/`Failure`, `AppLogger` con redacción, `ResponsiveLayout` + breakpoints, tokens de diseño, shell adaptativo (bottom nav / rail), ARB.
+- Feature `status` ("Hola, soy SentIA") que llama a `/v1/health` con el cliente generado.
+- `MoodScreen` (existía sin ruta) conectada a la pestaña Historial.
+- Corregido: `RoundedBottomNav` con altura fija se desbordaba con texto grande.
+- 26 tests; `flutter analyze` sin issues.
+
+### Problemas encontrados
+- `prisma@latest` apunta a una RC (8.0.0-rc) → se fijó 7.10.0. `@nestjs/config` 12 es solo ESM → 4.x.
+- `prisma init` instaló "skills" de agentes de terceros (`.agents/`, `.claude/`, `.windsurf/`) → eliminadas sin usar.
+- `google_fonts` 9 requiere `material_ui` → fijado 8.2.1.
+- Flutter 3.47 exige Gradle ≥ 8.14 → Gradle 9.3.1, AGP 9.1.0, Kotlin 2.4.0 (versiones del template), `resValues` habilitado.
+
+### Pendiente para cerrar Etapa 0
+- Subir a GitHub y ver CI en verde. Flavors de iOS (requiere Mac). Probar `/v1/health` con BD real (Docker Desktop).
+
+---
+
 ## 2026-10-10 - Documentación para agentes y revisión de docs/
 
 ### Tareas Realizadas:

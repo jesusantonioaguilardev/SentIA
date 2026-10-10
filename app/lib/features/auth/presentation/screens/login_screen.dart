@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sentia2/features/auth/presentation/providers/auth_provider.dart';
-import 'signup_screen.dart';
-import 'forgot_password_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sentia2/core/routing/routes.dart';
+import 'package:sentia2/features/auth/presentation/controllers/auth_controller.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({super.key});
+  const new({super.key});
 
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
@@ -32,26 +34,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     // Escuchar cambios de estado para errores
     ref.listen<AuthState>(authProvider, (previous, next) {
-      next.maybeWhen(
-        error: (message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message)),
-          );
-        },
-        orElse: () {},
-      );
+      if (next case AuthError(:final message)) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(message)));
+      }
     });
 
-    final isLoading = authState.maybeWhen(
-      loading: () => true,
-      orElse: () => false,
-    );
+    final isLoading = authState is AuthLoading;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Form(
             key: _formKey,
             child: Column(
@@ -62,14 +57,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     width: 80,
                     height: 80,
                     decoration: BoxDecoration(
-                      color: colorScheme.primaryContainer.withValues(alpha: 0.2),
+                      color: colorScheme.primaryContainer.withValues(
+                        alpha: 0.2,
+                      ),
                       shape: BoxShape.circle,
                     ),
                     child: Center(
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          Icon(Icons.water_drop, size: 40, color: colorScheme.primary),
+                          Icon(
+                            Icons.water_drop,
+                            size: 40,
+                            color: colorScheme.primary,
+                          ),
                           Positioned(
                             left: 10,
                             top: 25,
@@ -77,7 +78,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               width: 12,
                               height: 12,
                               decoration: BoxDecoration(
-                                color: colorScheme.secondary.withValues(alpha: 0.6),
+                                color: colorScheme.secondary.withValues(
+                                  alpha: 0.6,
+                                ),
                                 shape: BoxShape.circle,
                               ),
                             ),
@@ -107,7 +110,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 Card(
                   color: colorScheme.surfaceContainerLowest,
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: const EdgeInsets.all(24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -132,11 +135,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             hintText: '••••••••',
                             prefixIcon: const Icon(Icons.lock_outline),
                             suffixIcon: IconButton(
-                              icon: Icon(_obscurePassword
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined),
-                              onPressed: () =>
-                                  setState(() => _obscurePassword = !_obscurePassword),
+                              icon: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                              ),
+                              onPressed: () => setState(
+                                () => _obscurePassword = !_obscurePassword,
+                              ),
                             ),
                           ),
                           validator: (v) => (v == null || v.isEmpty)
@@ -147,11 +153,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const ForgotPasswordScreen()),
-                            ),
+                            onPressed: () =>
+                                context.push(Routes.forgotPassword),
                             child: const Text('¿Olvidaste tu contraseña?'),
                           ),
                         ),
@@ -162,10 +165,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             onPressed: isLoading ? null : _handleLogin,
                             child: isLoading
                                 ? const SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                    ),
+                                  )
                                 : const Text('Iniciar sesión'),
                           ),
                         ),
@@ -179,14 +184,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   children: [
                     Text(
                       '¿No tienes una cuenta?',
-                      style: theme.textTheme.bodyMedium
-                          ?.copyWith(color: colorScheme.onSurfaceVariant),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
                     ),
                     TextButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const SignupScreen()),
-                      ),
+                      onPressed: () => context.push(Routes.signup),
                       child: const Text('Crear cuenta'),
                     ),
                   ],
@@ -202,19 +205,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   Widget _buildLabel(ThemeData theme, String text) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.only(bottom: 8),
       child: Text(
         text,
-        style: theme.textTheme.labelLarge?.copyWith(color: theme.colorScheme.onSurface),
+        style: theme.textTheme.labelLarge?.copyWith(
+          color: theme.colorScheme.onSurface,
+        ),
       ),
     );
   }
 
   void _handleLogin() {
     if (_formKey.currentState?.validate() ?? false) {
-      ref.read(authProvider.notifier).login(
-        _emailController.text.trim(),
-        _passwordController.text,
+      unawaited(
+        ref
+            .read(authProvider.notifier)
+            .login(_emailController.text.trim(), _passwordController.text),
       );
     }
   }

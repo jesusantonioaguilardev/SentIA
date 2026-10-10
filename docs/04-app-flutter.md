@@ -20,20 +20,26 @@ Versión mínima: Flutter estable vigente; Android `minSdk 24` (sugerido), iOS 1
 
 ## Estructura (feature-first + capas limpias)
 ```
+app/                         # raíz del paquete Flutter en el monorepo (ADR-0005)
+  packages/sentia_api/       # cliente generado desde backend/openapi.yaml (no editar)
 lib/
   main_dev.dart / main_staging.dart / main_prod.dart
   app/
     app.dart                 # MaterialApp.router
+    bootstrap.dart           # arranque por flavor + manejo global de errores
     router.dart              # go_router + redirects (auth, consentimiento)
+    shell/                   # navegación principal adaptativa (bottom nav / rail)
     theme/                   # tokens, ThemeData claro/oscuro
-    flavors.dart
   core/
+    config/                  # Flavor, AppConfig (URL de API por entorno)
     network/                 # dio, interceptores, ApiClient generado
     error/                   # Failure, Result<T>, mapeo de excepciones
     responsive/              # breakpoints, ResponsiveLayout, AdaptiveScaffold
+    routing/                 # constantes de rutas (features navegan sin importar app/)
+    safety/                  # red de seguridad local offline (zona protegida, 08)
     a11y/                    # helpers de Semantics, reduced motion
-    security/                # secure storage, redactor de logs
-    logging/
+    security/                # secure storage
+    logging/                 # AppLogger + redactor de datos sensibles
     utils/
   features/
     auth/
@@ -49,6 +55,8 @@ lib/
 test/                        # espejo de lib/
 integration_test/
 ```
+**Excepción documentada:** `features/home` es un tablero que compone otras features (hoy lee `mood`); es el único feature que puede importar a otros.
+
 **Regla de dependencias:** `presentation → domain ← data`. `domain` no importa Flutter ni `dio`. Un feature no importa otro feature; lo compartido sube a `core/` o `shared/`.
 
 ## Responsive (obligatorio)

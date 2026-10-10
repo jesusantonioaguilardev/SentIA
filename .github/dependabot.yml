@@ -1,0 +1,18 @@
+# Actualizaciones de dependencias (docs/10). Toda dependencia nueva o salto
+# de versión mayor se revisa antes de aceptar (docs/11).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /backend
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: pub
+    directory: /app
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

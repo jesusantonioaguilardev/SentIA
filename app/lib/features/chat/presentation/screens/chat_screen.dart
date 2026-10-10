@@ -1,11 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sentia2/core/providers/navigation_provider.dart';
-import 'package:sentia2/domain/entities/chat_message.dart';
-import 'package:sentia2/features/chat/presentation/providers/chat_provider.dart';
+import 'package:sentia2/core/routing/routes.dart';
+import 'package:sentia2/features/chat/domain/entities/chat_message.dart';
+import 'package:sentia2/features/chat/presentation/controllers/chat_controller.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
-  const ChatScreen({super.key});
+  const new({super.key});
 
   @override
   ConsumerState<ChatScreen> createState() => _ChatScreenState();
@@ -17,13 +20,13 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   void _handleSend() {
     final text = _controller.text.trim();
     if (text.isNotEmpty) {
-      ref.read(chatMessagesProvider.notifier).sendMessage(text);
+      unawaited(ref.read(chatMessagesProvider.notifier).sendMessage(text));
       _controller.clear();
     }
   }
 
   void _exitChat() {
-    ref.read(mainTabIndexProvider.notifier).setTab(0);
+    context.go(Routes.home);
   }
 
   @override
@@ -33,14 +36,18 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     final chatState = ref.watch(chatMessagesProvider);
     final messages = chatState.messages;
 
-    ref.listen(chatMessagesProvider.select((s) => s.errorMessage), (prev, next) {
+    ref.listen(chatMessagesProvider.select((s) => s.errorMessage), (
+      prev,
+      next,
+    ) {
       if (next != null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(next),
             action: SnackBarAction(
               label: 'OK',
-              onPressed: () => ref.read(chatMessagesProvider.notifier).dismissError(),
+              onPressed: () =>
+                  ref.read(chatMessagesProvider.notifier).dismissError(),
             ),
           ),
         );
@@ -57,7 +64,11 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         ),
         title: Row(
           children: [
-            Icon(Icons.water_drop, color: colorScheme.primaryContainer, size: 20),
+            Icon(
+              Icons.water_drop,
+              color: colorScheme.primaryContainer,
+              size: 20,
+            ),
             const SizedBox(width: 8),
             Text(
               'SentIA Chat',
@@ -76,7 +87,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         children: [
           if (chatState.showCrisisBanner)
             _CrisisBanner(
-              onDismiss: () => ref.read(chatMessagesProvider.notifier).dismissCrisisBanner(),
+              onDismiss: () =>
+                  ref.read(chatMessagesProvider.notifier).dismissCrisisBanner(),
             ),
           Expanded(
             child: ListView.builder(
@@ -88,18 +100,25 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                 }
                 final msg = messages[index];
                 final isUser = msg.role == MessageRole.user;
-                
+
                 return Align(
-                  alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+                  alignment: isUser
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 6),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     constraints: BoxConstraints(
                       maxWidth: MediaQuery.of(context).size.width * 0.75,
                     ),
                     decoration: BoxDecoration(
-                      color: isUser 
-                          ? (msg.isRiskFlagged ? colorScheme.errorContainer : colorScheme.primary) 
+                      color: isUser
+                          ? (msg.isRiskFlagged
+                                ? colorScheme.errorContainer
+                                : colorScheme.primary)
                           : colorScheme.surfaceContainerLow,
                       borderRadius: BorderRadius.only(
                         topLeft: const Radius.circular(20),
@@ -113,15 +132,21 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                             color: colorScheme.shadow.withValues(alpha: 0.03),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
-                          )
+                          ),
                       ],
-                      border: msg.isRiskFlagged ? Border.all(color: colorScheme.error.withValues(alpha: 0.5)) : null,
+                      border: msg.isRiskFlagged
+                          ? Border.all(
+                              color: colorScheme.error.withValues(alpha: 0.5),
+                            )
+                          : null,
                     ),
                     child: Text(
-                      msg.text, 
+                      msg.text,
                       style: TextStyle(
-                        color: isUser 
-                            ? (msg.isRiskFlagged ? colorScheme.onErrorContainer : colorScheme.onPrimary) 
+                        color: isUser
+                            ? (msg.isRiskFlagged
+                                  ? colorScheme.onErrorContainer
+                                  : colorScheme.onPrimary)
                             : colorScheme.onSurface,
                         fontSize: 15,
                         height: 1.4,
@@ -144,8 +169,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
 }
 
 class _CrisisBanner extends StatelessWidget {
+  const new({required this.onDismiss});
   final VoidCallback onDismiss;
-  const _CrisisBanner({required this.onDismiss});
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +191,11 @@ class _CrisisBanner extends StatelessWidget {
           Expanded(
             child: Text(
               'Parece que estás pasando por un momento difícil. Recuerda que no estás solo/a. Si necesitas ayuda urgente, contacta a una línea de emergencia.',
-              style: TextStyle(color: colorScheme.onErrorContainer, fontSize: 13, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: colorScheme.onErrorContainer,
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           IconButton(
@@ -180,7 +209,7 @@ class _CrisisBanner extends StatelessWidget {
 }
 
 class _TypingIndicator extends StatelessWidget {
-  const _TypingIndicator();
+  const new();
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -195,7 +224,11 @@ class _TypingIndicator extends StatelessWidget {
         ),
         child: Text(
           'SentIA está pensando...',
-          style: TextStyle(fontStyle: FontStyle.italic, color: colorScheme.onSurfaceVariant, fontSize: 12),
+          style: TextStyle(
+            fontStyle: FontStyle.italic,
+            color: colorScheme.onSurfaceVariant,
+            fontSize: 12,
+          ),
         ),
       ),
     );
@@ -203,15 +236,14 @@ class _TypingIndicator extends StatelessWidget {
 }
 
 class _ChatInputField extends StatelessWidget {
-  final TextEditingController controller;
-  final VoidCallback onSend;
-  final bool isTyping;
-
-  const _ChatInputField({
+  const new({
     required this.controller,
     required this.onSend,
     required this.isTyping,
   });
+  final TextEditingController controller;
+  final VoidCallback onSend;
+  final bool isTyping;
 
   @override
   Widget build(BuildContext context) {
@@ -246,7 +278,10 @@ class _ChatInputField extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 12,
+                  ),
                 ),
                 onSubmitted: (_) => onSend(),
               ),

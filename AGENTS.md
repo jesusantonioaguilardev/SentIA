@@ -9,10 +9,10 @@ Aplica a cualquier modelo (Claude, GPT, Gemini…). Guía completa: [docs/11-gui
 4. Si algo está en [docs/12](docs/12-decisiones-pendientes.md) o marcado `[PENDIENTE]` → **pregunta**. No inventes requisitos, endpoints, umbrales ni textos legales.
 
 ## Zonas protegidas (confirmación humana explícita)
-- Seguridad/crisis: `features/safety/**`, `modules/safety/**`, `lib/core/utils/risk_signal_detector.dart`, léxico de riesgo, textos de crisis.
+- Seguridad/crisis: `app/lib/core/safety/**`, `app/lib/features/safety/**`, `backend/src/modules/safety/**`, léxico de riesgo, textos de crisis.
 - Prompts en producción.
-- Textos legales y de consentimiento (`lib/core/constants/legal_texts.dart`).
-- Migraciones de BD y cifrado.
+- Textos legales y de consentimiento (`app/lib/features/onboarding/presentation/legal_texts.dart`).
+- Migraciones de BD (`backend/prisma/`) y cifrado.
 - Auth, guards, manejo de tokens.
 
 ## Prohibido
@@ -24,10 +24,12 @@ Aplica a cualquier modelo (Claude, GPT, Gemini…). Guía completa: [docs/11-gui
 - Agregar dependencias sin justificar y sin aprobación.
 
 ## Al editar
-- Sigue la arquitectura de [docs/04](docs/04-app-flutter.md) (app) / [docs/05](docs/05-backend-nestjs.md) (backend), no patrones viejos.
+- Sigue la arquitectura de [docs/04](docs/04-app-flutter.md) (app) / [docs/05](docs/05-backend-nestjs.md) (backend), no patrones viejos. Referencia: `app/lib/features/status`.
+- No edites `app/packages/sentia_api/` a mano: se genera desde `backend/openapi.yaml`.
 - Cambios mínimos; strings de UI en ARB; `TODO(clinico|legal|etapa-N)`.
 
 ## Al terminar
-- App: `fvm flutter analyze` + `fvm flutter test` (tras `fvm dart run build_runner build --delete-conflicting-outputs` si tocaste código generado).
+- App (`app/`): `fvm flutter analyze` (0 issues) + `fvm flutter test` (tras `fvm dart run build_runner build --delete-conflicting-outputs` si tocaste código generado).
+- Backend (`backend/`): `npm run lint:check`, `npm run typecheck`, `npm test`, `npm run test:e2e`. Si cambió la API: `npm run contract`.
 - Definition of Done: [docs/10](docs/10-calidad-y-pruebas.md).
 - Resume qué cambiaste, qué verificaste y qué requiere validación humana.

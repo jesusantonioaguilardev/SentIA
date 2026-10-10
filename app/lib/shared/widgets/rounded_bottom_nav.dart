@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 /// visual de SentIA. Se adapta a modo claro y oscuro vía Theme.of(context)
 /// — no usa colores hardcodeados.
 class RoundedBottomNav extends StatelessWidget {
-  const RoundedBottomNav({
-    super.key,
+  const new({
     required this.currentIndex,
     required this.onTap,
     required this.items,
+    super.key,
   });
 
   final int currentIndex;
@@ -22,8 +22,10 @@ class RoundedBottomNav extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Container(
-        height: 68,
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        // Altura mínima, no fija: con texto grande (hasta 200 %, docs/04) la
+        // barra crece en vez de desbordarse.
+        constraints: const BoxConstraints(minHeight: 68),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
           color: colors.surfaceContainerLowest,
           borderRadius: BorderRadius.circular(32),
@@ -50,7 +52,9 @@ class RoundedBottomNav extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    color: isSelected ? colors.primaryContainer.withValues(alpha: 0.4) : Colors.transparent,
+                    color: isSelected
+                        ? colors.primaryContainer.withValues(alpha: 0.4)
+                        : Colors.transparent,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
@@ -59,7 +63,9 @@ class RoundedBottomNav extends StatelessWidget {
                       Icon(
                         item.icon,
                         size: 22,
-                        color: isSelected ? colors.primary : colors.onSurfaceVariant,
+                        color: isSelected
+                            ? colors.primary
+                            : colors.onSurfaceVariant,
                       ),
                       const SizedBox(height: 2),
                       Text(
@@ -67,8 +73,12 @@ class RoundedBottomNav extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: 'Plus Jakarta Sans',
                           fontSize: 11,
-                          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                          color: isSelected ? colors.primary : colors.onSurfaceVariant,
+                          fontWeight: isSelected
+                              ? FontWeight.w600
+                              : FontWeight.w400,
+                          color: isSelected
+                              ? colors.primary
+                              : colors.onSurfaceVariant,
                         ),
                       ),
                     ],

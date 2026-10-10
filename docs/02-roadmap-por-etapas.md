@@ -11,24 +11,24 @@ Duraciones orientativas para 1 desarrollador con apoyo de IA; ajustar.
 **Objetivo:** esqueleto profesional sobre el que todo lo demás crece sin reescrituras.
 
 App (Flutter):
-- [ ] Estructura `lib/app`, `lib/core`, `lib/features`, `lib/shared`, `lib/l10n` ([04](04-app-flutter.md)).
-- [ ] Flavors `dev`, `staging`, `prod` (bundle ids y endpoints distintos).
-- [ ] Dependencias base: riverpod, go_router, dio, freezed, json_serializable, flutter_secure_storage, intl.
-- [ ] Theme Material 3 claro/oscuro + tokens de diseño; `ResponsiveLayout` con breakpoints.
-- [ ] i18n con ARB (`es` por defecto).
-- [ ] `analysis_options.yaml` estricto (very_good_analysis o flutter_lints + reglas extra).
-- [ ] Manejo global de errores (`Result`/`Failure`), logger con redacción de datos sensibles.
-- [ ] Migrar el código existente (anterior a estos docs) a la estructura de [04](04-app-flutter.md); inventario de deuda en `CLAUDE.md`.
+- [x] Estructura `lib/app`, `lib/core`, `lib/features`, `lib/shared`, `lib/l10n` ([04](04-app-flutter.md)).
+- [ ] Flavors `dev`, `staging`, `prod` (bundle ids y endpoints distintos). — Android ✔ (`com.sentia.app[.dev|.staging]`); **iOS pendiente** (esquemas de Xcode, requiere Mac).
+- [x] Dependencias base: riverpod, go_router, dio, freezed, json_serializable, flutter_secure_storage, intl.
+- [x] Theme Material 3 claro/oscuro + tokens de diseño; `ResponsiveLayout` con breakpoints.
+- [x] i18n con ARB (`es` por defecto).
+- [x] `analysis_options.yaml` estricto (very_good_analysis o flutter_lints + reglas extra).
+- [x] Manejo global de errores (`Result`/`Failure`), logger con redacción de datos sensibles.
+- [x] Migrar el código existente (anterior a estos docs) a la estructura de [04](04-app-flutter.md); los textos heredados pasan a ARB al reescribir cada pantalla (deuda en `CLAUDE.md`).
 
 Backend (NestJS):
-- [ ] Repo `sentia-backend`, módulos vacíos `auth`, `users`, `health`; Prisma + PostgreSQL; Docker Compose local.
-- [ ] Config por entorno validada (zod/class-validator), Swagger/OpenAPI en `/docs`.
-- [ ] `openapi.yaml` publicado → cliente Dart generado en la app.
+- [x] `backend/` en el monorepo ([ADR-0005](adr/0005-monorepo.md)), módulos vacíos `auth`, `users`, `health`; Prisma + PostgreSQL; Docker Compose local.
+- [x] Config por entorno validada (zod/class-validator), Swagger/OpenAPI en `/docs`.
+- [x] `openapi.yaml` publicado → cliente Dart generado en la app.
 
 Transversal:
-- [ ] Repositorio git inicializado (prerrequisito de CI).
-- [ ] CI: analyze + test + build en cada PR (GitHub Actions).
-- [x] `AGENTS.md`, `CLAUDE.md`, `docs/`, ADRs 0001–0004.
+- [x] Repositorio git inicializado (prerrequisito de CI).
+- [ ] CI: analyze + test + build en cada PR (GitHub Actions). — workflow escrito (`.github/workflows/ci.yml`); **falta subir a GitHub y verlo en verde**.
+- [x] `AGENTS.md`, `CLAUDE.md`, `docs/`, ADRs 0001–0005.
 
 **Criterio de salida:** app compila en los 3 flavors, muestra pantalla "Hola" responsive en teléfono y tablet, llama `GET /health` del backend; CI en verde.
 

@@ -1,0 +1,109 @@
+# CI de SentIA (docs/10): analyze + test + build en cada PR y en main.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend (NestJS)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - run: npm run lint:check
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run test:e2e
+      - name: openapi.yaml al día con el código
+        run: |
+          npm run openapi:export
+          git diff --exit-code -- openapi.yaml || {
+            echo "::error::openapi.yaml desactualizado. Corre 'npm run contract' en backend/ y sube los cambios."
+            exit 1
+          }
+
+  app:
+    name: App (Flutter)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - name: Versión de Flutter desde .fvmrc
+        id: fvm
+        run: echo "version=$(jq -r .flutter .fvmrc)" >> "$GITHUB_OUTPUT"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm.outputs.version }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Código generado al día (build_runner + l10n)
+        run: |
+          (cd packages/sentia_api && dart pub get && dart run build_runner build --delete-conflicting-outputs)
+          dart run build_runner build --delete-conflicting-outputs
+          flutter gen-l10n
+          git diff --exit-code -- . || {
+            echo "::error::Código generado desactualizado. Corre build_runner y sube los cambios."
+            exit 1
+          }
+      - run: dart format --set-exit-if-changed lib test
+      - run: flutter analyze
+      - run: flutter test
+
+  app-build:
+    name: Build Android (${{ matrix.flavor }})
+    needs: app
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        flavor: [dev, staging, prod]
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Versión de Flutter desde .fvmrc
+        id: fvm
+        run: echo "version=$(jq -r .flutter .fvmrc)" >> "$GITHUB_OUTPUT"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm.outputs.version }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter build apk --debug --flavor ${{ matrix.flavor }} -t lib/main_${{ matrix.flavor }}.dart
+
+  secrets:
+    name: Escaneo de secretos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

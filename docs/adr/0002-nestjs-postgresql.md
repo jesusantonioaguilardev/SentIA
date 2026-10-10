@@ -3,11 +3,13 @@
 - **Estado:** Aceptado
 - **Fecha:** 2026-10-10
 
+> El repositorio separado que preveía este ADR se reemplazó por un monorepo: ver [ADR-0005](0005-monorepo.md).
+
 ## Contexto
 Se necesita auth con roles, datos sensibles cifrados, streaming de chat, WebSockets para voz, integración con varios proveedores de IA y, más adelante, RAG.
 
 ## Decisión
-Monolito modular NestJS (TypeScript strict) + Prisma + PostgreSQL (pgvector para RAG). Repo separado; contrato OpenAPI como fuente de verdad del cliente Dart.
+Monolito modular NestJS (TypeScript strict) + Prisma + PostgreSQL (pgvector para RAG). Contrato OpenAPI como fuente de verdad del cliente Dart.
 
 ## Alternativas
 - Ktor (Kotlin): sin ventaja de lenguaje compartido al usar Flutter.

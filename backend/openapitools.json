@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.26.0",
+    "generators": {
+      "dart": {
+        "generatorName": "dart-dio",
+        "inputSpec": "#{cwd}/openapi.yaml",
+        "output": "#{cwd}/../app/packages/sentia_api",
+        "additionalProperties": {
+          "pubName": "sentia_api",
+          "pubDescription": "Cliente generado de la API de SentIA. No editar a mano (regenerar con npm run contract en backend).",
+          "pubAuthor": "SentIA",
+          "serializationLibrary": "json_serializable"
+        }
+      }
+    }
+  }
+}

@@ -24,7 +24,9 @@
     "lint:check": "eslint \"{src,test}/**/*.ts\"",
     "openapi:export": "nest build && node dist/openapi-export",
     "db:up": "docker compose up -d db",
-    "db:down": "docker compose down"
+    "db:down": "docker compose down",
+    "client:dart": "openapi-generator-cli generate --generator-key dart && cd ../app/packages/sentia_api && fvm dart pub get && fvm dart run build_runner build --delete-conflicting-outputs",
+    "contract": "npm run openapi:export && npm run client:dart"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -48,6 +50,7 @@
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
+    "@openapitools/openapi-generator-cli": "^2.41.0",
     "@types/express": "^5.0.0",
     "@types/jest": "^30.0.0",
     "@types/js-yaml": "^4.0.9",

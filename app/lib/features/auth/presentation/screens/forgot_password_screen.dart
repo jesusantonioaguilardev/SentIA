@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sentia2/features/auth/presentation/providers/auth_provider.dart';
+import 'package:sentia2/features/auth/presentation/controllers/auth_controller.dart';
 
 class ForgotPasswordScreen extends ConsumerStatefulWidget {
-  const ForgotPasswordScreen({super.key});
+  const new({super.key});
 
   @override
-  ConsumerState<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+  ConsumerState<ForgotPasswordScreen> createState() =>
+      _ForgotPasswordScreenState();
 }
 
 class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
@@ -31,8 +32,10 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: _emailSent ? _buildSuccessState(theme) : _buildFormState(theme),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: _emailSent
+              ? _buildSuccessState(theme)
+              : _buildFormState(theme),
         ),
       ),
     );
@@ -54,7 +57,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Ingresa tu correo y te enviaremos instrucciones para restablecer tu acceso.',
+            'Ingresa tu correo y te enviaremos instrucciones para restablecer '
+            'tu acceso.',
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -63,21 +67,25 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
           Card(
             color: theme.colorScheme.surfaceContainerLowest,
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Correo electrónico',
-                    style: theme.textTheme.labelLarge?.copyWith(color: theme.colorScheme.onSurface),
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.onSurface,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(hintText: 'tu@correo.com'),
+                    decoration: const InputDecoration(
+                      hintText: 'tu@correo.com',
+                    ),
                     keyboardType: TextInputType.emailAddress,
-                    validator: (v) => (v == null || !v.contains('@')) 
-                        ? 'Por favor ingresa un correo válido' 
+                    validator: (v) => (v == null || !v.contains('@'))
+                        ? 'Por favor ingresa un correo válido'
                         : null,
                   ),
                   const SizedBox(height: 32),
@@ -101,17 +109,26 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.mark_email_read_outlined, size: 80, color: theme.colorScheme.primary),
+        Icon(
+          Icons.mark_email_read_outlined,
+          size: 80,
+          color: theme.colorScheme.primary,
+        ),
         const SizedBox(height: 32),
         Text(
           '¡Correo enviado!',
-          style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.headlineMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 16),
         Text(
-          'Revisa tu bandeja de entrada y sigue los pasos para recuperar tu acceso.',
+          'Revisa tu bandeja de entrada y sigue los pasos para recuperar tu '
+          'acceso.',
           textAlign: TextAlign.center,
-          style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+          style: theme.textTheme.bodyLarge?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ),
         const SizedBox(height: 40),
         SizedBox(
@@ -127,7 +144,9 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
 
   Future<void> _handleSubmit() async {
     if (_formKey.currentState?.validate() ?? false) {
-      await ref.read(authProvider.notifier).resetPassword(_emailController.text);
+      await ref
+          .read(authProvider.notifier)
+          .resetPassword(_emailController.text);
       setState(() => _emailSent = true);
     }
   }

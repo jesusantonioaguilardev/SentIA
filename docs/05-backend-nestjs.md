@@ -1,6 +1,6 @@
 # 05 · Backend NestJS
 
-Repositorio separado: `sentia-backend`. Monolito modular TypeScript (strict).
+Carpeta `backend/` del monorepo ([ADR-0005](adr/0005-monorepo.md)). Monolito modular TypeScript (strict).
 
 ## Stack
 | Necesidad | Elección |

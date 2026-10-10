@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sentia2/core/constants/legal_texts.dart';
-import 'package:sentia2/domain/entities/user_consent.dart';
-import 'package:sentia2/features/auth/presentation/providers/auth_provider.dart';
+import 'package:sentia2/core/routing/routes.dart';
+import 'package:sentia2/features/onboarding/presentation/legal_texts.dart';
 
 class OnboardingScreen extends HookConsumerWidget {
-  const OnboardingScreen({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,10 +21,8 @@ class OnboardingScreen extends HookConsumerWidget {
     final professionalLinkConsent = useState<bool>(false);
     final researchConsent = useState<bool>(false);
 
-    const String currentDocVersion = '1.0.0';
-
-    final List<Widget> steps = [
-      _InfoStep(
+    final steps = <Widget>[
+      const _InfoStep(
         title: 'Qué es SentIA',
         content: LegalTexts.informedConsentStep1,
         image: Icons.psychology_outlined,
@@ -59,35 +57,13 @@ class OnboardingScreen extends HookConsumerWidget {
       ),
     ];
 
-    void _finishOnboarding() {
-      final consent = UserConsent(
-        sensitiveData: ConsentRecord(
-          accepted: sensitiveDataConsent.value,
-          documentVersion: currentDocVersion,
-          timestamp: DateTime.now(),
-        ),
-        clinicalLimit: ConsentRecord(
-          accepted: clinicalLimitConsent.value,
-          documentVersion: currentDocVersion,
-          timestamp: DateTime.now(),
-        ),
-        professionalLink: ConsentRecord(
-          accepted: professionalLinkConsent.value,
-          documentVersion: currentDocVersion,
-          timestamp: DateTime.now(),
-        ),
-        researchImprovement: ConsentRecord(
-          accepted: researchConsent.value,
-          documentVersion: currentDocVersion,
-          timestamp: DateTime.now(),
-        ),
-      );
-      
-      // ref.read(authProvider.notifier).saveConsent(consent);
-      Navigator.of(context).pushReplacementNamed('/home');
+    void finishOnboarding() {
+      // TODO(etapa-1): registrar el consentimiento versionado en el backend
+      // (POST /v1/consents, docs/05 y docs/06) antes de continuar.
+      context.go(Routes.home);
     }
 
-    bool _canContinue() {
+    bool canContinue() {
       if (currentPage.value == 1) return sensitiveDataConsent.value;
       if (currentPage.value == 2) return clinicalLimitConsent.value;
       return true;
@@ -99,7 +75,7 @@ class OnboardingScreen extends HookConsumerWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24),
               child: LinearProgressIndicator(
                 value: (currentPage.value + 1) / steps.length,
                 backgroundColor: colorScheme.surfaceContainerHighest,
@@ -115,13 +91,13 @@ class OnboardingScreen extends HookConsumerWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 children: [
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: _canContinue() 
+                      onPressed: canContinue()
                           ? () {
                               if (currentPage.value < steps.length - 1) {
                                 pageController.nextPage(
@@ -129,11 +105,15 @@ class OnboardingScreen extends HookConsumerWidget {
                                   curve: Curves.easeInOut,
                                 );
                               } else {
-                                _finishOnboarding();
+                                finishOnboarding();
                               }
                             }
                           : null,
-                      child: Text(currentPage.value == steps.length - 1 ? 'Empezar' : 'Continuar'),
+                      child: Text(
+                        currentPage.value == steps.length - 1
+                            ? 'Empezar'
+                            : 'Continuar',
+                      ),
                     ),
                   ),
                   if (currentPage.value > 0)
@@ -142,7 +122,10 @@ class OnboardingScreen extends HookConsumerWidget {
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeOut,
                       ),
-                      child: Text('Atrás', style: TextStyle(color: colorScheme.onSurfaceVariant)),
+                      child: Text(
+                        'Atrás',
+                        style: TextStyle(color: colorScheme.onSurfaceVariant),
+                      ),
                     ),
                 ],
               ),
@@ -155,25 +138,32 @@ class OnboardingScreen extends HookConsumerWidget {
 }
 
 class _InfoStep extends StatelessWidget {
+  const new({required this.title, required this.content, required this.image});
   final String title;
   final String content;
   final IconData image;
-
-  const _InfoStep({required this.title, required this.content, required this.image});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.all(32),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(image, size: 80, color: theme.colorScheme.primary),
           const SizedBox(height: 32),
-          Text(title, style: theme.textTheme.headlineLarge, textAlign: TextAlign.center),
+          Text(
+            title,
+            style: theme.textTheme.headlineLarge,
+            textAlign: TextAlign.center,
+          ),
           const SizedBox(height: 24),
-          Text(content, style: theme.textTheme.bodyLarge, textAlign: TextAlign.center),
+          Text(
+            content,
+            style: theme.textTheme.bodyLarge,
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );
@@ -181,25 +171,24 @@ class _InfoStep extends StatelessWidget {
 }
 
 class _ConsentStep extends StatelessWidget {
-  final String title;
-  final String content;
-  final bool value;
-  final ValueChanged<bool?> onChanged;
-  final bool isRequired;
-
-  const _ConsentStep({
+  const new({
     required this.title,
     required this.content,
     required this.value,
     required this.onChanged,
     required this.isRequired,
   });
+  final String title;
+  final String content;
+  final bool value;
+  final ValueChanged<bool?> onChanged;
+  final bool isRequired;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.all(32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -208,7 +197,7 @@ class _ConsentStep extends StatelessWidget {
           const SizedBox(height: 24),
           Card(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20),
               child: Text(content, style: theme.textTheme.bodyMedium),
             ),
           ),
@@ -217,7 +206,9 @@ class _ConsentStep extends StatelessWidget {
             value: value,
             onChanged: onChanged,
             title: Text(
-              isRequired ? 'Sí, entiendo y autorizo (Requerido)' : 'Sí, autorizo (Opcional)',
+              isRequired
+                  ? 'Sí, entiendo y autorizo (Requerido)'
+                  : 'Sí, autorizo (Opcional)',
               style: theme.textTheme.labelLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: isRequired && !value ? theme.colorScheme.error : null,

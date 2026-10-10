@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:sentia2/core/providers/navigation_provider.dart';
-import 'package:sentia2/domain/entities/mood_entry.dart';
-import 'package:sentia2/features/mood_tracking/presentation/providers/mood_provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sentia2/core/routing/routes.dart';
+import 'package:sentia2/features/mood/domain/entities/mood_entry.dart';
+import 'package:sentia2/features/mood/presentation/controllers/mood_controller.dart';
+import 'package:sentia2/features/mood/presentation/mood_type_style.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+  const new({super.key});
 
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
@@ -17,9 +18,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _registerMood() {
     if (_selectedMood == null) return;
-    
+
     ref.read(moodEntriesProvider.notifier).addMood(_selectedMood!);
-    
+
     final label = _selectedMood?.label;
     setState(() => _selectedMood = null);
 
@@ -32,7 +33,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _goToChat() {
-    ref.read(mainTabIndexProvider.notifier).setTab(1);
+    context.go(Routes.chat);
   }
 
   void _openActivity(String name) {
@@ -51,14 +52,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 12.0, bottom: 140.0),
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 12,
+            bottom: 140,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const _CustomAppBar(),
               const SizedBox(height: 24),
               Text(
-                'Hola, Antonio', 
+                'Hola, Antonio',
                 style: theme.textTheme.headlineLarge?.copyWith(
                   color: colorScheme.onSurface,
                   fontWeight: FontWeight.w600,
@@ -75,7 +81,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ),
               const SizedBox(height: 32),
-              
+
               // Mood Tracker Card
               Container(
                 width: double.infinity,
@@ -106,16 +112,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     Text(
                       'Elige la emoción que mejor te describe.',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        fontSize: 13, 
+                        fontSize: 13,
                         color: colorScheme.onSurfaceVariant,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    
+
                     _buildMoodGrid(),
-                    
+
                     const SizedBox(height: 12),
-                    
+
                     SizedBox(
                       width: double.infinity,
                       height: 56,
@@ -123,16 +129,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         onPressed: _selectedMood != null ? _registerMood : null,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: colorScheme.primary,
-                          disabledBackgroundColor: colorScheme.primary.withValues(alpha: 0.3),
+                          disabledBackgroundColor: colorScheme.primary
+                              .withValues(alpha: 0.3),
                           shape: const StadiumBorder(),
                           elevation: 0,
                         ),
                         child: Text(
-                          _selectedMood != null 
-                            ? '✓ Registrar: ${_selectedMood!.label}' 
-                            : 'Selecciona una emoción',
+                          _selectedMood != null
+                              ? '✓ Registrar: ${_selectedMood!.label}'
+                              : 'Selecciona una emoción',
                           style: TextStyle(
-                            color: _selectedMood != null ? colorScheme.onPrimary : colorScheme.onSurface.withValues(alpha: 0.5), 
+                            color: _selectedMood != null
+                                ? colorScheme.onPrimary
+                                : colorScheme.onSurface.withValues(alpha: 0.5),
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                           ),
@@ -142,10 +151,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ],
                 ),
               ),
-              
+
               const SizedBox(height: 24),
               _ChatCtaCard(onTalkPressed: _goToChat),
-              
+
               const SizedBox(height: 32),
               Text(
                 'Tu bienestar de hoy',
@@ -187,7 +196,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Widget _buildMoodGrid() {
-    final moods = MoodType.values;
+    const moods = MoodType.values;
     return Column(
       children: [
         Row(
@@ -228,15 +237,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 }
 
 class _MoodTile extends StatelessWidget {
-  final MoodType type;
-  final bool isSelected;
-  final ValueChanged<MoodType> onTap;
-
-  const _MoodTile({
+  const new({
     required this.type,
     required this.isSelected,
     required this.onTap,
   });
+  final MoodType type;
+  final bool isSelected;
+  final ValueChanged<MoodType> onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -251,18 +259,22 @@ class _MoodTile extends StatelessWidget {
           AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             width: double.infinity,
-            height: 60, 
+            height: 60,
             decoration: BoxDecoration(
-              color: isSelected ? type.backgroundColor : colorScheme.surfaceContainerLow,
+              color: isSelected
+                  ? type.backgroundColor
+                  : colorScheme.surfaceContainerLow,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: isSelected ? type.color : colorScheme.onSurface.withValues(alpha: 0.08),
+                color: isSelected
+                    ? type.color
+                    : colorScheme.onSurface.withValues(alpha: 0.08),
                 width: 1.5,
               ),
             ),
             child: Icon(
-              type.icon, 
-              color: isSelected ? type.color : colorScheme.onSurfaceVariant, 
+              type.icon,
+              color: isSelected ? type.color : colorScheme.onSurfaceVariant,
               size: 24,
             ),
           ),
@@ -275,7 +287,9 @@ class _MoodTile extends StatelessWidget {
             style: theme.textTheme.labelSmall?.copyWith(
               fontSize: 12,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-              color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant,
+              color: isSelected
+                  ? colorScheme.onSurface
+                  : colorScheme.onSurfaceVariant,
             ),
           ),
         ],
@@ -285,35 +299,42 @@ class _MoodTile extends StatelessWidget {
 }
 
 class _CustomAppBar extends StatelessWidget {
-  const _CustomAppBar();
+  const new();
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            Icon(Icons.water_drop, color: colorScheme.primaryContainer, size: 24),
+            Icon(
+              Icons.water_drop,
+              color: colorScheme.primaryContainer,
+              size: 24,
+            ),
             const SizedBox(width: 8),
             Text(
-              'SentIA', 
+              'SentIA',
               style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold, 
+                fontWeight: FontWeight.bold,
                 color: colorScheme.primary,
-              )
+              ),
             ),
           ],
         ),
         CircleAvatar(
-          radius: 18, 
-          backgroundColor: colorScheme.secondaryContainer, 
+          radius: 18,
+          backgroundColor: colorScheme.secondaryContainer,
           child: Text(
-            'A', 
-            style: TextStyle(color: colorScheme.onSecondaryContainer, fontWeight: FontWeight.bold)
-          )
+            'A',
+            style: TextStyle(
+              color: colorScheme.onSecondaryContainer,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ],
     );
@@ -321,7 +342,7 @@ class _CustomAppBar extends StatelessWidget {
 }
 
 class _ChatCtaCard extends StatelessWidget {
-  const _ChatCtaCard({required this.onTalkPressed});
+  const new({required this.onTalkPressed});
   final VoidCallback onTalkPressed;
 
   @override
@@ -333,7 +354,9 @@ class _ChatCtaCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: colorScheme.secondaryContainer.withValues(alpha: theme.brightness == Brightness.dark ? 0.2 : 0.4),
+        color: colorScheme.secondaryContainer.withValues(
+          alpha: theme.brightness == Brightness.dark ? 0.2 : 0.4,
+        ),
         borderRadius: BorderRadius.circular(32),
       ),
       child: Column(
@@ -342,7 +365,7 @@ class _ChatCtaCard extends StatelessWidget {
           Text(
             '¿Quieres hablar con alguien?',
             style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold, 
+              fontWeight: FontWeight.bold,
               color: colorScheme.onSecondaryContainer,
             ),
           ),
@@ -363,19 +386,18 @@ class _ChatCtaCard extends StatelessWidget {
 }
 
 class _ActivityCard extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-
-  const _ActivityCard({
+  const new({
     required this.icon,
     required this.iconColor,
     required this.title,
     required this.subtitle,
     required this.onTap,
   });
+  final IconData icon;
+  final Color iconColor;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -390,13 +412,15 @@ class _ActivityCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: colorScheme.surfaceContainerLowest,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: colorScheme.onSurface.withValues(alpha: 0.05)),
+          border: Border.all(
+            color: colorScheme.onSurface.withValues(alpha: 0.05),
+          ),
         ),
         child: Row(
           children: [
             CircleAvatar(
-              backgroundColor: iconColor.withValues(alpha: 0.1), 
-              child: Icon(icon, color: iconColor)
+              backgroundColor: iconColor.withValues(alpha: 0.1),
+              child: Icon(icon, color: iconColor),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -404,17 +428,17 @@ class _ActivityCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title, 
+                    title,
                     style: theme.textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold, 
+                      fontWeight: FontWeight.bold,
                       color: colorScheme.onSurface,
-                    )
+                    ),
                   ),
                   Text(
-                    subtitle, 
+                    subtitle,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: colorScheme.onSurfaceVariant,
-                    )
+                    ),
                   ),
                 ],
               ),

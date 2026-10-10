@@ -1,0 +1,13 @@
+// Esquema de SentIA. Ver docs/06-base-de-datos.md.
+// Etapa 0: sin modelos. Las tablas (identity, clinical, ops) llegan en Etapa 1;
+// las migraciones son zona protegida (docs/11) y requieren confirmación humana.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}

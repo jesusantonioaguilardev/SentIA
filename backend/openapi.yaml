@@ -1,0 +1,62 @@
+openapi: 3.0.0
+paths:
+  /v1/health:
+    get:
+      operationId: healthCheck
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthDto'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthDto'
+      tags:
+        - health
+info:
+  title: SentIA API
+  description: API del backend de SentIA. Ver docs/05-backend-nestjs.md.
+  version: '1'
+  contact: {}
+tags: []
+servers: []
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    HealthDto:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+            - degraded
+        database:
+          type: string
+          enum:
+            - up
+            - down
+        environment:
+          type: string
+          enum:
+            - dev
+            - staging
+            - prod
+        version:
+          type: string
+          example: 0.0.1
+      required:
+        - status
+        - database
+        - environment
+        - version

@@ -1,0 +1,11 @@
+node_modules
+/dist
+/coverage
+
+# Variables de entorno (usar .env.example como plantilla)
+.env
+.env.*
+!.env.example
+
+# Cliente Prisma generado (se regenera en postinstall)
+/src/generated

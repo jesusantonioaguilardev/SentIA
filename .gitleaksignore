@@ -1,0 +1,3 @@
+# Falsos positivos revisados a mano. Cada línea: commit:archivo:regla:línea.
+# README de plantilla de NestJS con token de ejemplo (abc123def456) en una insignia; ya reemplazado.
+5d1ef5e94368284d68ad9b7eb38792b3132c7241:backend/README.md:generic-api-key:5

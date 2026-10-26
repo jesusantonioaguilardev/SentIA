@@ -11,7 +11,6 @@ describe('GET /v1/health (e2e)', () => {
   const queryRaw = jest.fn();
 
   beforeAll(async () => {
-    process.env.DATABASE_URL ??= 'postgresql://test:test@localhost:5432/test';
     const moduleRef = await Test.createTestingModule({ imports: [AppModule] })
       .overrideProvider(PrismaService)
       .useValue({ $queryRaw: queryRaw, $disconnect: jest.fn() })

@@ -77,6 +77,7 @@ GET    /v1/health
 - Rotación de llaves documentada.
 
 ## Borrado de cuenta
+Alcance propuesto (qué se borra y qué se conserva seudonimizado): [ADR-0007](adr/0007-borrado-de-cuenta.md).
 - `DELETE /v1/me` → marca `deletion_requested_at`, revoca sesiones, job elimina/anonimiza datos en ≤ 30 días [VALIDAR-LEGAL plazo], conserva solo lo legalmente requerido (p. ej. evidencia de consentimiento) y lo documenta.
 
 ## Observabilidad

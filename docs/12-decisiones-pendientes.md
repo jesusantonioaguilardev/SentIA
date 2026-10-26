@@ -3,8 +3,8 @@
 Ningún agente debe resolver estos puntos por su cuenta. Al decidir uno: muévelo a un ADR y actualiza los docs afectados.
 
 ## Producto
-- [ ] Usuario principal del MVP (público general vs pacientes de una clínica específica).
-- [ ] Cliente directo y modelo de negocio (B2C, B2B a clínicas, licencia). **Bloqueante para Etapa 1**: si es B2B, el rol especialista, la vinculación y el responsable de los datos cambian desde el inicio.
+- [x] Usuario principal del MVP: público general → [ADR-0006](adr/0006-mvp-b2c.md).
+- [x] Modelo de negocio del MVP: B2C → [ADR-0006](adr/0006-mvp-b2c.md). Monetización: [PENDIENTE].
 - [ ] Alcance exacto del rol especialista y mecanismo de vinculación.
 - [ ] Rol familiar (lo menciona una propuesta; no está en el Master Context).
 - [ ] Escala del mood tracker (1–5 vs 0–10) y lista de emociones.
@@ -38,5 +38,5 @@ Ningún agente debe resolver estos puntos por su cuenta. Al decidir uno: muével
 - [ ] Plazos de retención por tipo de dato.
 - [ ] Contacto de emergencia: base legal para notificarlo.
 - [ ] Edad mínima y flujo para menores. En MVP la edad es **autodeclarada** (`birth_year`); confirmar que es suficiente y documentarlo como decisión consciente.
-- [ ] Borrado de cuenta vs `audit_log` append-only y evidencia de consentimiento: qué se elimina, qué se anonimiza y qué se conserva (y cuánto). **Bloqueante para Etapa 1.**
+- [ ] Borrado de cuenta: propuesta en [ADR-0007](adr/0007-borrado-de-cuenta.md) (borrar contenido; conservar consentimiento y auditoría seudonimizados). **Falta validación legal y plazos de retención.**
 - [ ] Si el portal de especialistas constituye expediente clínico (NOM-004/NOM-024).

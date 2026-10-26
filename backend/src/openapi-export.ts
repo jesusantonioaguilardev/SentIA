@@ -7,11 +7,10 @@ import { buildOpenApiDocument, configureApp } from './app.setup';
 
 /**
  * Exporta el contrato a `backend/openapi.yaml` (fuente de verdad del cliente Dart, docs/03).
- * No necesita base de datos: Prisma conecta de forma perezosa.
+ * No necesita base de datos (Prisma conecta de forma perezosa), pero sí un
+ * entorno válido: usa `.env` en local y variables del job en CI.
  */
 async function main(): Promise<void> {
-  process.env.DATABASE_URL ??=
-    'postgresql://openapi:openapi@localhost:5432/openapi';
   const app = await NestFactory.create(AppModule, { logger: false });
   configureApp(app);
   const document = buildOpenApiDocument(app);

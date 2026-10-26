@@ -18,7 +18,7 @@ dependencies:
   flutter_riverpod: ^3.4.3
   flutter_secure_storage: ^11.2.0
   freezed_annotation: ^3.1.0
-  go_router: ^18.0.2
+  go_router: ^18.1.1
   # 9.x depende de material_ui (Material fuera del SDK); incompatible con
   # flutter/material de Flutter 3.47. Revisar al migrar a material_ui.
   google_fonts: ^8.2.1

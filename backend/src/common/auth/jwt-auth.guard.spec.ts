@@ -69,6 +69,38 @@ describe('JwtAuthGuard', () => {
     });
   });
 
+  it('distingue por milisegundos tokens anteriores y posteriores a un logout-all', async () => {
+    const { guard, jwt, prisma } = setup();
+    const revokedAt = Date.now();
+    prisma.user.findUnique.mockResolvedValue({
+      status: 'active',
+      tokensValidAfter: new Date(revokedAt),
+    });
+    const before = await jwt.signAsync({
+      sub: 'u1',
+      sid: 's1',
+      role: 'user',
+      iatMs: revokedAt - 5,
+    });
+    const after = await jwt.signAsync({
+      sub: 'u1',
+      sid: 's1',
+      role: 'user',
+      iatMs: revokedAt + 5,
+    });
+
+    await expect(
+      guard.canActivate(
+        context({ headers: { authorization: `Bearer ${before}` } }),
+      ),
+    ).rejects.toMatchObject({ code: 'UNAUTHORIZED' });
+    await expect(
+      guard.canActivate(
+        context({ headers: { authorization: `Bearer ${after}` } }),
+      ),
+    ).resolves.toBe(true);
+  });
+
   it.each([
     ['la cuenta ya no existe', null],
     ['la cuenta está suspendida', { ...activeUser, status: 'suspended' }],

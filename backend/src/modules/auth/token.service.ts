@@ -139,8 +139,10 @@ export class TokenService {
         expiresAt: new Date(Date.now() + this.refreshTtlMs),
       },
     });
+    // `iatMs`: emisión en milisegundos. `iat` estándar solo tiene segundos y no
+    // distingue un token emitido justo antes de un logout-all de uno posterior.
     const accessToken = await this.jwt.signAsync(
-      { sub: user.id, sid: user.subjectId, role: user.role },
+      { sub: user.id, sid: user.subjectId, role: user.role, iatMs: Date.now() },
       { expiresIn: this.accessTtl },
     );
     return { accessToken, refreshToken, expiresIn: this.accessTtl };

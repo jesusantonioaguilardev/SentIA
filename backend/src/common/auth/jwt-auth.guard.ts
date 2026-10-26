@@ -15,6 +15,8 @@ export interface AccessTokenPayload {
   sid: string;
   role: string;
   iat: number;
+  /** Emisión en milisegundos (ver TokenService). */
+  iatMs?: number;
 }
 
 /**
@@ -53,12 +55,14 @@ export class JwtAuthGuard implements CanActivate {
       where: { id: payload.sub },
       select: { status: true, tokensValidAfter: true },
     });
-    // iat está en segundos; tokensValidAfter se compara con un segundo de gracia.
-    const issuedAt = payload.iat * 1000;
+    // Un token emitido antes de logout-all o de un cambio de contraseña ya no
+    // sirve, aunque no haya expirado. Sin iatMs se toma el inicio del segundo
+    // de `iat` (lo más conservador).
+    const issuedAt = payload.iatMs ?? payload.iat * 1000;
     if (
       !user ||
       user.status !== 'active' ||
-      issuedAt + 1000 < user.tokensValidAfter.getTime()
+      issuedAt < user.tokensValidAfter.getTime()
     ) {
       throw unauthorized();
     }

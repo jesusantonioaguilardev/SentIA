@@ -201,7 +201,6 @@ describe('Flujo de cuenta completo (PostgreSQL real)', () => {
       .expect(204);
 
     // El access token anterior ya no sirve; la contraseña vieja tampoco.
-    await new Promise((r) => setTimeout(r, 1100));
     await http()
       .get('/v1/me')
       .set('Authorization', `Bearer ${access}`)

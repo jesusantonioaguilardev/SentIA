@@ -8,6 +8,7 @@ import 'package:sentia2/core/responsive/responsive_layout.dart';
 import 'package:sentia2/features/status/domain/server_status.dart';
 import 'package:sentia2/features/status/presentation/controllers/server_status_controller.dart';
 import 'package:sentia2/l10n/app_localizations.dart';
+import 'package:sentia2/shared/widgets/sentia_logo.dart';
 
 /// Pantalla "Hola" de Etapa 0: muestra el flavor y el estado del backend.
 class StatusScreen extends ConsumerWidget {
@@ -24,11 +25,16 @@ class StatusScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l10n.appTitle)),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(Spacing.xl),
+          padding: const EdgeInsets.all(Spacing.margin),
           child: ConstrainedContent(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: SentiaLogo(size: 56),
+                ),
+                const SizedBox(height: Spacing.md),
                 Text(l10n.statusTitle, style: theme.textTheme.headlineMedium),
                 const SizedBox(height: Spacing.sm),
                 Text(
@@ -37,12 +43,12 @@ class StatusScreen extends ConsumerWidget {
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                 ),
-                const SizedBox(height: Spacing.xl),
-                Text(l10n.statusEnvironment(flavor.name)),
                 const SizedBox(height: Spacing.lg),
+                Text(l10n.statusEnvironment(flavor.name)),
+                const SizedBox(height: Spacing.md),
                 Card(
                   child: Padding(
-                    padding: const EdgeInsets.all(Spacing.lg),
+                    padding: const EdgeInsets.all(Spacing.margin),
                     child: switch (status) {
                       AsyncData(:final value) => _StatusRow.fromStatus(
                         value,
@@ -62,7 +68,7 @@ class StatusScreen extends ConsumerWidget {
                     },
                   ),
                 ),
-                const SizedBox(height: Spacing.lg),
+                const SizedBox(height: Spacing.md),
                 OutlinedButton.icon(
                   onPressed: status.isLoading
                       ? null
@@ -109,7 +115,7 @@ class _StatusRow extends StatelessWidget {
     children: [
       // El texto ya describe el estado; el ícono es decorativo.
       ExcludeSemantics(child: Icon(icon, color: color)),
-      const SizedBox(width: Spacing.md),
+      const SizedBox(width: Spacing.sm + Spacing.xs),
       Expanded(child: Text(label)),
     ],
   );

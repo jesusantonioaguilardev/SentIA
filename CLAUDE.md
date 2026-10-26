@@ -53,6 +53,7 @@ Generado y versionado en git: `*.g.dart`, `lib/l10n/app_localizations*.dart`, `a
 | **IA, chat, tests psicológicos o crisis** | [docs/07](docs/07-ia-conversacional.md) **y** [docs/08](docs/08-seguridad-y-crisis.md) — siempre juntos |
 | Textos legales, consentimiento, tiendas | [docs/09](docs/09-legal-y-cumplimiento.md) |
 | Pruebas, CI, Definition of Done | [docs/10](docs/10-calidad-y-pruebas.md) |
+| Pantallas, colores, componentes | [docs/design/README.md](docs/design/README.md) (capturas + revisión) y [DESIGN.md](docs/design/DESIGN.md) |
 | Algo no está decidido | [docs/12](docs/12-decisiones-pendientes.md) → **pregunta, no decidas** |
 
 ## Patrones ya establecidos (síguelos)
@@ -60,7 +61,7 @@ Generado y versionado en git: `*.g.dart`, `lib/l10n/app_localizations*.dart`, `a
   - Dependencias `presentation → domain ← data`; `domain` sin Flutter ni dio. Un feature no importa otro (excepción: `home`, ver docs/04).
   - Repos devuelven `Result<T>` (`core/error/result.dart`, usa `Result.guard`); la UI muestra `Failure.message(l10n)`.
   - Providers con `@riverpod`; controllers en `presentation/controllers/`. Rutas con constantes de `core/routing/routes.dart`.
-  - Layout con `ResponsiveLayout` / `ConstrainedContent`; espaciado con tokens (`app/theme/tokens.dart`).
+  - Layout con `ResponsiveLayout` / `ConstrainedContent`; espaciado con tokens (`app/theme/tokens.dart`); colores de `colorScheme` o `context.sentiaColors`; textos con `textTheme`. Componentes compartidos: `SentiaLogo`, `PrivacyBadge`.
   - Logs solo con `AppLogger` (redacta datos sensibles); nunca `print`.
   - Ejemplo completo de referencia: `features/status` (domain → data con cliente generado → controller → pantalla + tests).
 - **Backend:** módulos en `src/modules/<x>`; config validada en `src/config/env.schema.ts`; errores con formato `{ error: { code, message, traceId } }` (`src/common/filters`); prefijo `/v1`; `configureApp()` en `src/app.setup.ts` se comparte con tests e2e.

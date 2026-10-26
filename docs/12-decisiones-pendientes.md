@@ -8,7 +8,9 @@ Ningún agente debe resolver estos puntos por su cuenta. Al decidir uno: muével
 - [ ] Alcance exacto del rol especialista y mecanismo de vinculación.
 - [ ] Rol familiar (lo menciona una propuesta; no está en el Master Context).
 - [ ] Escala del mood tracker (1–5 vs 0–10) y lista de emociones.
-- [ ] Identidad visual final (paleta, tipografía, avatar).
+- [x] Identidad visual: "Serena & Calma" → [ADR-0008](adr/0008-identidad-visual.md).
+- [ ] Avatar del asistente: foto realista (como en los diseños) vs ilustración; ver [docs/design §Revisión 1](design/README.md).
+- [ ] Inicio de sesión con Google (aparece en el diseño del login).
 - [ ] Portal web: Flutter Web vs Next.js.
 
 ## Técnica

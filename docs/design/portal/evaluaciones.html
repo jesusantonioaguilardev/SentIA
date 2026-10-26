@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline": "#71787e", "on-tertiary-fixed-variant": "#504062", "inverse-surface": "#293236", "tertiary-container": "#705f83", "on-tertiary-container": "#f0deff", "outline-variant": "#c1c7ce", "on-secondary-container": "#416c4b", "on-tertiary": "#ffffff", "surface-tint": "#326380", "inverse-primary": "#9ccded", "error": "#ba1a1a", "surface-container-highest": "#dbe4e9", "on-error-container": "#93000a", "on-primary-fixed": "#001e2d", "secondary-fixed-dim": "#a3d2aa", "on-primary": "#ffffff", "surface-dim": "#d2dbe0", "surface": "#f3fbff", "tertiary": "#58476a", "secondary-fixed": "#beeec5", "on-primary-container": "#cae8ff", "inverse-on-surface": "#e9f2f7", "primary-fixed": "#c6e7ff", "on-secondary-fixed": "#00210c", "on-background": "#141d21", "surface-container-lowest": "#ffffff", "on-secondary": "#ffffff", "primary-fixed-dim": "#9ccded", "on-secondary-fixed-variant": "#254f31", "secondary": "#3d6847", "on-surface": "#141d21", "on-tertiary-fixed": "#231534", "surface-container": "#e6eff4", "surface-container-low": "#ecf5fa", "on-primary-fixed-variant": "#144c67", "background": "#f3fbff", "tertiary-fixed-dim": "#d4bee8", "surface-variant": "#dbe4e9", "tertiary-fixed": "#efdbff", "on-surface-variant": "#41484d", "surface-bright": "#f3fbff", "primary-container": "#3a6b88", "secondary-container": "#bcebc2", "surface-container-high": "#e0eaef", "primary": "#1e536f", "error-container": "#ffdad6", "on-error": "#ffffff" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "margin-desktop": "3rem", "space-md": "1rem", "gutter": "1rem", "space-xxl": "3.5rem", "margin-tablet": "2rem", "space-lg": "1.5rem", "gutter-tablet": "1.5rem", "space-xl": "2.25rem", "margin": "1.25rem", "space-xs": "0.25rem" }, "fontFamily": { "label-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"] }, "fontSize": { "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["17px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low/95 backdrop-blur-xl z-50 flex flex-col justify-between p-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm px-space-xs pt-space-xs"><img alt="Logotipo minimalista y orgánico que representa una hoja suave combinada con un halo o gota de serenidad y calma, trazo limpio y elegante en tono verde salvia y azul suave.. Brand logo. - Primary color: #3a6b88
+- Font: plusJakartaSans
+- Mode: light
+- Roundness: rounded-full
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WiTH1Ra4ulRGJ-DiEloPjaYmjqq7Gv6FYMhJVZExhuhZH32Lk9xctz6afF_KPnC65U2DZBdqt3xbN9okrvp4AIFxLV-7d9PYwuDkJMz-cUGj6VXQOAYzvDvaIqgvChIUecSYy5F8htHFh6KbjlIZ0XzdKGz0O6BhO_tk8HqNElcclvsTQPOPPhL0dH0Z3JEqgVvQ4euHLTAs85QCh4nbuWH6fHAFL44XbTeiIxphQYA1vo8vdc86OJ6jBe"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">SentIA Clínico</span></div><span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm w-fit">Portal Profesional</span></div></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary rounded-lg font-label-lg shadow-sm"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="pacientes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">group</span><span>Pacientes</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm transition-all bg-primary-container text-on-primary rounded-lg font-label-lg shadow-sm" data-path="evaluaciones" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">fact_check</span><span>Evaluaciones</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="monitoreo-emocional" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">vital_signs</span><span>Monitoreo emocional</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="conversaciones" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">forum</span><span>Conversaciones</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="alertas" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">notifications_active</span><span>Alertas</span></div><span class="px-space-xs py-0.5 rounded-full bg-error text-on-error font-label-sm text-label-sm font-semibold">3</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="reportes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">clinical_notes</span><span>Reportes</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="configuracion" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">settings</span><span>Configuración</span></div></a></nav></div><div class="flex flex-col gap-space-sm pt-space-md"><div class="p-space-sm rounded-lg bg-surface-container-lowest/80 shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex flex-col gap-space-xs"><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UHbOO3IxspFxJnCbs22IbDXY76xvdqIv52gSp4smTVUU-E-8-hcSlYNYybSYElhgIyC92oBGMMrgMevJx_LAnf841r4gBHuPemNefC5SsywogwDwGKU4J1qeZxlu4Ov-h_XWuXB7HsJtyQUQEfY_DEcZFD9Bx8yT3NbEzenT6mgYKQPBDeaQDqOm2F-F1kh8BdrQmdeP5Fceq4FAuVXkzLSvXjpSKHpBrayf8g7AUPx1BVvn2qWHEsMpA"/><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface truncate font-semibold">Dra. Sofía Alarcón</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Psicóloga Clínica - MP 41.820</span></div></div><div class="flex items-center justify-between pt-space-xs"><a class="flex items-center gap-space-xs text-on-surface-variant hover:text-error font-label-sm text-label-sm transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-body-md">logout</span><span>Cerrar sesión</span></a><span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Activa</span></div></div><div class="px-space-xs py-space-xs rounded-lg bg-surface-container-high/60 flex flex-col gap-1"><div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm"><span class="material-symbols-outlined text-body-sm text-tertiary">shield_lock</span><span>Datos protegidos HIPAA/GDPR</span></div><div class="flex items-center gap-space-xs pl-space-xs font-label-sm text-label-sm text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Conexión cifrada 256-bit</span></div></div></div></aside><div class="pl-72 min-h-screen flex flex-col"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between gap-space-md"><div class="flex-1 max-w-xl"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-space-md text-on-surface-variant text-body-lg pointer-events-none">search</span><input class="w-full pl-11 pr-space-md py-space-xs rounded-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all shadow-[0_1px_8px_rgba(0,0,0,0.02)]" placeholder="Buscar paciente por nombre, ID o expediente..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><span class="material-symbols-outlined text-secondary text-body-md">domain</span><span class="font-label-sm text-label-sm text-on-surface-variant">Sede Central · Consultorio 3B</span></div><div class="hidden md:flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-body-sm">schedule</span><span>Última actividad: Hoy 11:42 AM</span></div><div class="flex items-center gap-space-xs"><button class="relative p-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span></button><button class="p-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined">filter_alt</span></button></div><div class="flex items-center gap-space-xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_8px_rgba(0,0,0,0.06)]" src="https://lh3.googleusercontent.com/aida/AEtjO1UHbOO3IxspFxJnCbs22IbDXY76xvdqIv52gSp4smTVUU-E-8-hcSlYNYybSYElhgIyC92oBGMMrgMevJx_LAnf841r4gBHuPemNefC5SsywogwDwGKU4J1qeZxlu4Ov-h_XWuXB7HsJtyQUQEfY_DEcZFD9Bx8yT3NbEzenT6mgYKQPBDeaQDqOm2F-F1kh8BdrQmdeP5Fceq4FAuVXkzLSvXjpSKHpBrayf8g7AUPx1BVvn2qWHEsMpA"/><span class="hidden lg:inline font-label-md text-label-md text-on-surface font-medium">Dra. Sofía Alarcón</span></div></div></header><main class="w-full pt-16 bg-surface flex-1 px-space-lg py-space-md"><div class="flex flex-col w-full">
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+          Baremos Validados DSM-5 / CIE-11
+        </span>
+<span class="text-outline text-label-sm font-label-sm">· Cohorte Activa (48 pacientes)</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Evaluaciones Psicométricas</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Monitoreo estandarizado de sintomatología clínica, baremos y evolución comparativa pre-post intervención multimodal con SentIA.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm self-start xl:self-auto">
+<button class="inline-flex items-center gap-space-sm px-6 py-3.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary-container hover:shadow-lg transition-all" id="openModalBtn" type="button">
+<span class="material-symbols-outlined text-body-lg">assignment_add</span>
+<span>+ Asignar nueva evaluación a paciente</span>
+</button>
+<button class="p-3 rounded-full bg-surface-container-lowest text-on-surface-variant shadow-sm hover:bg-surface-container hover:text-on-surface transition-all" title="Opciones de exportación clínica" type="button">
+<span class="material-symbols-outlined text-body-lg">download</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm mb-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-label-md text-primary">person_search</span>
+          Paciente objetivo
+        </label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full py-2.5 pl-4 pr-10 focus:outline-none focus:bg-surface-container transition-colors">
+<option selected="">Todos los pacientes (48)</option>
+<option>García Morán, Mateo · EXP-2024-819</option>
+<option>Valenzuela, Camila · EXP-2023-412</option>
+<option>Serrano Ríos, Álvaro · EXP-2024-104</option>
+<option>López Bravo, Elena · EXP-2023-772</option>
+<option>Duarte Peña, Nicolás · EXP-2024-309</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none text-body-md">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-label-md text-primary">psychology</span>
+          Instrumento clínico
+        </label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full py-2.5 pl-4 pr-10 focus:outline-none focus:bg-surface-container transition-colors">
+<option selected="">Todos los instrumentos psicométricos</option>
+<option>PHQ-9 (Cuestionario Salud del Paciente)</option>
+<option>GAD-7 (Trastorno Ansiedad Generalizada)</option>
+<option>PSS-10 (Escala Estrés Percibido)</option>
+<option>C-SSRS (Escala Columbia Suicidio)</option>
+<option>BAI (Inventario Ansiedad Beck)</option>
+<option>ASQ (Cuestionario Tamizaje de Ansiedad)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none text-body-md">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-label-md text-primary">date_range</span>
+          Ventana temporal
+        </label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full py-2.5 pl-4 pr-10 focus:outline-none focus:bg-surface-container transition-colors">
+<option>Últimos 30 días</option>
+<option selected="">Últimos 90 días (Recomendado)</option>
+<option>Año en curso (2025)</option>
+<option>Histórico completo / Longitudinal</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none text-body-md">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-label-md text-primary">speed</span>
+          Punto de corte clínico
+        </label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full py-2.5 pl-4 pr-10 focus:outline-none focus:bg-surface-container transition-colors">
+<option selected="">Todos los rangos / severidad</option>
+<option>Mínimo / Remisión clínica</option>
+<option>Leve (Monitoreo ambulatorio)</option>
+<option>Moderado (Ajuste psicoterapéutico)</option>
+<option>Severo / Riesgo activo (Alerta roja)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none text-body-md">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm mt-space-md pt-space-sm">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-outline mr-1">Filtros rápidos:</span>
+<button class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold hover:opacity-90 transition-opacity" type="button">PHQ-9 + GAD-7</button>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">Solo evaluaciones remotas (App)</button>
+<button class="px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm hover:opacity-90 transition-opacity flex items-center gap-1" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Alerta reactivo 9 (Suicidio)
+        </button>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span>Mostrando <strong>24 evaluaciones</strong> de 116 totales</span>
+<button class="text-primary font-semibold hover:underline" type="button">Restablecer filtros</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md mb-space-xl">
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm mb-space-lg">
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Tendencia de Cohorte Psicométrica</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Reducción de Severidad: Terapia + SentIA</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Evolución estandarizada PHQ-9 y GAD-7 durante 12 semanas de acompañamiento híbrido.</p>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-low px-3 py-1.5 rounded-full self-start md:self-auto">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-3 h-3 rounded-full bg-primary"></span> PHQ-9 (Media)
+          </span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-3 h-3 rounded-full bg-secondary"></span> GAD-7 (Media)
+          </span>
+</div>
+</div>
+<div class="w-full h-64 flex flex-col justify-end">
+<svg class="w-full h-56 overflow-visible" preserveaspectratio="none" viewbox="0 0 700 200">
+<defs>
+<lineargradient id="phqGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#1e536f" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#1e536f" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient id="gadGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#3d6847" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#3d6847" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<line stroke="#c1c7ce" stroke-dasharray="4 4" stroke-opacity="0.4" x1="0" x2="700" y1="30" y2="30"></line>
+<line stroke="#c1c7ce" stroke-dasharray="4 4" stroke-opacity="0.4" x1="0" x2="700" y1="80" y2="80"></line>
+<line stroke="#c1c7ce" stroke-dasharray="4 4" stroke-opacity="0.4" x1="0" x2="700" y1="130" y2="130"></line>
+<line stroke="#c1c7ce" stroke-dasharray="4 4" stroke-opacity="0.4" x1="0" x2="700" y1="180" y2="180"></line>
+<text class="fill-outline text-[10px] font-label-sm" x="5" y="26">Severo (19-27)</text>
+<text class="fill-outline text-[10px] font-label-sm" x="5" y="76">Mod. Grave (15-18)</text>
+<text class="fill-outline text-[10px] font-label-sm" x="5" y="126">Moderado (10-14)</text>
+<text class="fill-outline text-[10px] font-label-sm" x="5" y="176">Leve / Remisión (0-9)</text>
+<path d="M 50 45 Q 160 60, 260 85 T 470 125 T 670 155 L 670 190 L 50 190 Z" fill="url(#phqGrad)"></path>
+<path d="M 50 45 Q 160 60, 260 85 T 470 125 T 670 155" fill="none" stroke="#1e536f" stroke-linecap="round" stroke-width="3.5"></path>
+<path d="M 50 70 Q 160 90, 260 110 T 470 145 T 670 170 L 670 190 L 50 190 Z" fill="url(#gadGrad)"></path>
+<path d="M 50 70 Q 160 90, 260 110 T 470 145 T 670 170" fill="none" stroke="#3d6847" stroke-dasharray="6 3" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="50" cy="45" fill="#ffffff" r="5" stroke="#1e536f" stroke-width="3"></circle>
+<circle cx="260" cy="85" fill="#ffffff" r="5" stroke="#1e536f" stroke-width="3"></circle>
+<circle cx="470" cy="125" fill="#ffffff" r="5" stroke="#1e536f" stroke-width="3"></circle>
+<circle cx="670" cy="155" fill="#1e536f" r="6" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="50" cy="70" fill="#ffffff" r="4.5" stroke="#3d6847" stroke-width="2.5"></circle>
+<circle cx="260" cy="110" fill="#ffffff" r="4.5" stroke="#3d6847" stroke-width="2.5"></circle>
+<circle cx="470" cy="145" fill="#ffffff" r="4.5" stroke="#3d6847" stroke-width="2.5"></circle>
+<circle cx="670" cy="170" fill="#3d6847" r="5.5" stroke="#ffffff" stroke-width="2"></circle>
+<text class="fill-primary font-bold text-[11px]" x="675" y="152">7.2 (Leve)</text>
+<text class="fill-secondary font-bold text-[11px]" x="675" y="174">5.8 (Leve)</text>
+</svg>
+<div class="grid grid-cols-4 pt-space-xs text-center border-t border-surface-container">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Semana 0 (Basal)</span>
+<span class="font-label-sm text-[10px] text-outline">Ingreso al programa</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Semana 4</span>
+<span class="font-label-sm text-[10px] text-outline">Intervención activa</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Semana 8</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Consolidación</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary font-bold">Semana 12 (Actual)</span>
+<span class="font-label-sm text-[10px] text-outline">Post-evaluación</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex flex-col justify-between flex-1">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Distribución de Cohorte</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-medium">N = 48</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+          Distribución de pacientes activos según baremo normativo más crítico reportado en los últimos 30 días.
+        </p>
+<div class="flex flex-col gap-space-sm">
+<div>
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="text-on-surface font-medium">Remisión / Sintomatología Leve</span>
+<span class="text-secondary font-bold">58.3% (28 pac.)</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container">
+<div class="h-2.5 rounded-full bg-secondary" style="width: 58.3%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="text-on-surface font-medium">Sintomatología Moderada</span>
+<span class="text-primary font-bold">27.1% (13 pac.)</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container">
+<div class="h-2.5 rounded-full bg-primary-container" style="width: 27.1%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="text-on-surface font-medium">Severa / Moderadamente Grave</span>
+<span class="text-tertiary font-bold">10.4% (5 pac.)</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container">
+<div class="h-2.5 rounded-full bg-tertiary" style="width: 10.4%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="text-error font-medium flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error"></span> Alerta de Seguridad (C-SSRS / PHQ-9 #9)
+              </span>
+<span class="text-error font-bold">4.2% (2 pac.)</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container">
+<div class="h-2.5 rounded-full bg-error" style="width: 4.2%"></div>
+</div>
+</div>
+</div>
+<div class="mt-space-md p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-headline-sm">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Tasa de Adherencia</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Completación de reactivos semanales</span>
+</div>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">92.4%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Evaluaciones Completadas Recientemente</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">16 hoy</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm shadow-sm hover:bg-surface-container">
+<span class="material-symbols-outlined text-body-md">view_agenda</span>
+          Vista de tarjetas
+        </button>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-body-md">table_rows</span>
+          Compacta
+        </button>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md items-center">
+<div class="xl:col-span-3 flex items-center gap-space-md">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm flex-shrink-0" data-alt="Close-up portrait of Mateo García, a young adult male with warm approachable expression, soft natural indoor lighting, clinical portal avatar with neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGxFuj75tGtF6noLN_Yu3QK7KVHtT18DMVix_weChKNfeVhkEmUzRWrQbalewhOYQGe7iUfsFqcA8sdyhYdRasP7GnYHjuhB3Z0RbkF4rcwomGpsYT6IyWf9BcBNDIWv_lPxyI3sI7IVWLuDox48APeBB6BnLF3FJicY9BJVwD-kRQ1U2EWx6SdTyLG0iepM0rem_LA0FdwSwhiGmoFLVKK_3j-2r6nHAZm8577VClM1sozy6VQQlBHQ"/>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Mateo García Morán</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">EXP-2024-819 · 28 años</span>
+<span class="font-label-sm text-[11px] text-secondary mt-0.5">Terapia Cognitivo-Conductual</span>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Instrumento</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">PHQ-9</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">Depresión</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">9 reactivos validados</span>
+</div>
+<div class="xl:col-span-3 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Puntaje y Baremo</span>
+<div class="flex items-baseline gap-2 mt-0.5">
+<span class="font-headline-lg text-headline-lg text-tertiary font-bold">16 <span class="font-label-sm text-label-md text-outline font-normal">/ 27</span></span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">
+                Depresión moderadamente grave
+              </span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 59%"></div>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Evolución Comparativa</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-0.5 font-headline-sm text-headline-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-body-lg">trending_down</span>
+                -5 pts
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vs. basal (21 pts)</span>
+</div>
+<span class="font-label-sm text-[11px] text-secondary font-medium">Mejoría clínicamente significativa</span>
+</div>
+<div class="xl:col-span-2 flex flex-col xl:items-end justify-between gap-space-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-body-sm text-primary">smartphone</span>
+<span>Hoy, 09:15 AM · App SentIA</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3.5 py-2 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors" onclick="toggleModal('phq9-detail')" type="button">
+                Ver desglose
+              </button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Exportar informe en PDF" type="button">
+<span class="material-symbols-outlined text-body-md">picture_as_pdf</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md items-center">
+<div class="xl:col-span-3 flex items-center gap-space-md">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm flex-shrink-0" data-alt="Professional portrait of Camila Valenzuela, a woman in her early 30s with gentle focus and serene atmosphere, soft studio daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj8vd5-0fKJH3uoDLtN-iG7RTuHNewAkqmm7bigKZxKotEvv7v4KsFb2evGIs319Hp2t11MhQQUTsf3d2DtrViVUF6gz74oyeFHVEkg9u31Yk7UZ4MWN9Uw-ytdkJNsLUtNhX3cDK_WNcKwdCW-8VFeJ8yvPv-VbNJLatD2aUXdZwfRZTPgnPC0SkJXV9LGI9ghnToGbxbS3Vy_rxEjlk2A2NJ0KJO3eICvRJU2YvPRBpa4wtExpOsRw"/>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Camila Valenzuela</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">EXP-2023-412 · 34 años</span>
+<span class="font-label-sm text-[11px] text-primary mt-0.5">Trastorno de Ansiedad Generalizada</span>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Instrumento</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">GAD-7</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">Ansiedad</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">7 reactivos de escala Likert</span>
+</div>
+<div class="xl:col-span-3 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Puntaje y Baremo</span>
+<div class="flex items-baseline gap-2 mt-0.5">
+<span class="font-headline-lg text-headline-lg text-secondary font-bold">6 <span class="font-label-sm text-label-md text-outline font-normal">/ 21</span></span>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">
+                Ansiedad leve (Zona segura)
+              </span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 28.5%"></div>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Evolución Comparativa</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-0.5 font-headline-sm text-headline-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-body-lg">trending_down</span>
+                -8 pts
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vs. basal (14 pts)</span>
+</div>
+<span class="font-label-sm text-[11px] text-secondary font-medium">Transición de Moderada a Leve</span>
+</div>
+<div class="xl:col-span-2 flex flex-col xl:items-end justify-between gap-space-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-body-sm text-outline">stethoscope</span>
+<span>Ayer, 04:30 PM · Presencial</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3.5 py-2 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors" type="button">
+                Ver desglose
+              </button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Exportar informe en PDF" type="button">
+<span class="material-symbols-outlined text-body-md">picture_as_pdf</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md items-center">
+<div class="xl:col-span-3 flex items-center gap-space-md">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm flex-shrink-0" data-alt="Portrait of Álvaro Serrano, man in his 40s wearing spectacles with thoughtful serious expression, calm warm clinic ambiance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW8ke817q6s_w1z7z3iAyM7LDa2CmZ4LSdmSpgS2vJoJzZ7ojq49G7jRbVPsOLLMbSKVm9tdJH-TMU3meBU6qOrRX2eqxsZ2Uh8OLlbfKqCTTmyhH0O8o4U_hcBu8o0oi2b3apjbF6wH7MbuBoV1SyDkWSrQRhtxoA_3lhGZCrs4h0h5z98fC0EPMJfZxdYcih5qYZ7-X6dV6HMvwUdTZQyte0-t7BaOtSD3tLgacqx9jkNM2aLIBEqg"/>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Álvaro Serrano Ríos</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">EXP-2024-104 · 42 años</span>
+<span class="font-label-sm text-[11px] text-tertiary mt-0.5">Burnout Laboral / Distimia</span>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Instrumento</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">PSS-10</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">Estrés Percibido</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">10 reactivos bipolares</span>
+</div>
+<div class="xl:col-span-3 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Puntaje y Baremo</span>
+<div class="flex items-baseline gap-2 mt-0.5">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">24 <span class="font-label-sm text-label-md text-outline font-normal">/ 40</span></span>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+                Estrés moderado-alto
+              </span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2">
+<div class="bg-primary-container h-1.5 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Evolución Comparativa</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-0.5 font-headline-sm text-headline-sm text-outline font-bold">
+<span class="material-symbols-outlined text-body-lg">trending_flat</span>
+                0 pts
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vs. 15 días (24 pts)</span>
+</div>
+<span class="font-label-sm text-[11px] text-outline font-medium">Estabilidad sin cambios</span>
+</div>
+<div class="xl:col-span-2 flex flex-col xl:items-end justify-between gap-space-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-body-sm text-primary">smartphone</span>
+<span>12 Mar, 08:20 PM · App SentIA</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3.5 py-2 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors" type="button">
+                Ver desglose
+              </button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Exportar informe en PDF" type="button">
+<span class="material-symbols-outlined text-body-md">picture_as_pdf</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-md transition-all">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md items-center">
+<div class="xl:col-span-3 flex items-center gap-space-md">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm flex-shrink-0" data-alt="Gentle artistic photographic portrait of Elena López, young creative woman in her 20s with calm demeanor, natural daylight and soft sage green backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Jojz7P6_qNSTTNNRfMGH4wWcfrxkpEXChCzKhYyr-WPAHTya_5alpu2ylwRKDmJri6bwitkCzA4uXRATgTgjfTdDJXoelPUaJAhgjDR0qU-78WoJoueaqGxJ82s8S4kq-y0pKIK_MtvRyeE18XZ5vhDGMD2u_m_4FzLcJNu4RgQ56Bufn0oxoU8L6hUS5Gnga5EwCdf3jufrI-gnkwTvIvuYnwabA1zU1VDRlVzQr0B36OP_v0CFkg"/>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Elena López Bravo</span>
+<span class="w-2 h-2 rounded-full bg-error" title="Alerta clínica activa"></span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">EXP-2023-772 · 22 años</span>
+<span class="font-label-sm text-[11px] text-error font-medium">Protocolo de Contención Suicida</span>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Instrumento</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-headline-sm text-headline-sm text-error font-bold">C-SSRS</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">Columbia Riesgo</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Versión Screening Clínico</span>
+</div>
+<div class="xl:col-span-3 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Puntaje y Baremo</span>
+<div class="flex items-baseline gap-2 mt-0.5">
+<span class="font-headline-lg text-headline-lg text-error font-bold">Nivel 2 <span class="font-label-sm text-label-md text-outline font-normal">/ 5</span></span>
+<span class="px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+                Ideación sin plan activo
+              </span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2">
+<div class="bg-error h-1.5 rounded-full" style="width: 40%"></div>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Evolución Comparativa</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-0.5 font-headline-sm text-headline-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-body-lg">arrow_downward</span>
+                Reducción
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vs. Nivel 4 (Previo)</span>
+</div>
+<span class="font-label-sm text-[11px] text-secondary font-medium">Disipación de intención conductual</span>
+</div>
+<div class="xl:col-span-2 flex flex-col xl:items-end justify-between gap-space-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-body-sm text-primary">smartphone</span>
+<span>10 Mar, 11:10 AM · App SentIA</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3.5 py-2 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold hover:opacity-90 transition-opacity" type="button">
+                Revisar alerta
+              </button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Exportar informe en PDF" type="button">
+<span class="material-symbols-outlined text-body-md">picture_as_pdf</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed inset-y-0 right-0 w-full max-w-xl bg-surface-container-lowest shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col" id="phq9DetailDrawer">
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Desglose de Reactivos Clínicos</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mateo García Morán · PHQ-9</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Aplicado hoy, 09:15 AM · Puntaje: 16 / 27 (Moderadamente grave)</span>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container text-on-surface transition-colors" onclick="toggleModal('phq9-detail')" type="button">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-space-lg flex flex-col gap-space-md">
+<div class="p-space-sm rounded-xl bg-secondary-fixed/50 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-secondary-fixed-variant">Delta respecto a línea basal (Semana 0):</span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">-5 puntos (Mejoría favorable)</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline font-mono">Ítem 1 · Anhedonia</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Poco interés o alegría al hacer cosas</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">2 / 3 (Más de la mitad de días)</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline font-mono">Ítem 2 · Estado anímico</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Sentirse decaído, deprimido o sin esperanzas</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">2 / 3 (Más de la mitad de días)</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline font-mono">Ítem 3 · Patrón de sueño</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Problemas para dormir o dormir demasiado</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">3 / 3 (Casi todos los días)</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline font-mono">Ítem 4 · Fatiga</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Sentirse cansado o con poca energía</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">3 / 3 (Casi todos los días)</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline font-mono">Ítem 5 · Apetito</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Poco apetito o comer en exceso</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">1 / 3 (Varios días)</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline font-mono">Ítem 6 · Autoestima</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Sentirse mal consigo mismo o que ha fracasado</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">2 / 3 (Más de la mitad de días)</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline font-mono">Ítem 7 · Concentración</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Dificultad para concentrarse en lectura o trabajo</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">2 / 3 (Más de la mitad de días)</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-outline font-mono">Ítem 8 · Psicomotricidad</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Lentitud motora o inquietud evidente</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">1 / 3 (Varios días)</span>
+</div>
+<div class="p-space-sm rounded-xl bg-secondary-fixed/40 flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-secondary font-mono font-bold">Ítem 9 · Reactivo Crítico (Riesgo Suicida)</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Pensamientos de muerte o de lastimarse</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">0 / 3 (Para nada)</span>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-colors" onclick="toggleModal('phq9-detail')" type="button">
+        Cerrar
+      </button>
+<button class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-colors" type="button">
+<span class="material-symbols-outlined text-body-md">clinical_notes</span>
+<span>Añadir a Nota de Evolución</span>
+</button>
+</div>
+</div>
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-space-md" id="assignModal">
+<div class="bg-surface-container-lowest rounded-3xl p-space-xl max-w-lg w-full shadow-2xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="p-2 rounded-full bg-primary-fixed text-on-primary-fixed-variant material-symbols-outlined">assignment_add</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Asignar Nueva Evaluación</h3>
+</div>
+<button class="p-1 rounded-full hover:bg-surface-container text-outline transition-colors" id="closeModalBtn" type="button">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        El instrumento se notificará a través de la aplicación SentIA del paciente con instrucciones estandarizadas y recordatorio somático.
+      </p>
+<form class="flex flex-col gap-space-md" onsubmit="event.preventDefault(); alert('Evaluación asignada y sincronizada correctamente en SentIA.'); document.getElementById('assignModal').classList.add('hidden');">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Seleccionar Paciente</label>
+<select class="w-full bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-xl p-3 focus:outline-none focus:bg-surface-container" required="">
+<option value="">Selecciona un paciente del consultorio...</option>
+<option>Mateo García Morán (EXP-2024-819)</option>
+<option>Camila Valenzuela (EXP-2023-412)</option>
+<option>Álvaro Serrano Ríos (EXP-2024-104)</option>
+<option>Elena López Bravo (EXP-2023-772)</option>
+<option>Nicolás Duarte Peña (EXP-2024-309)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Instrumento Estandarizado</label>
+<select class="w-full bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-xl p-3 focus:outline-none focus:bg-surface-container" required="">
+<option value="PHQ-9">PHQ-9 · Cuestionario sobre la Salud del Paciente (Depresión)</option>
+<option value="GAD-7">GAD-7 · Escala de Trastorno de Ansiedad Generalizada</option>
+<option value="PSS-10">PSS-10 · Escala de Estrés Percibido</option>
+<option value="C-SSRS">C-SSRS · Escala Columbia de Clasificación del Riesgo de Suicidio</option>
+<option value="BAI">BAI · Inventario de Ansiedad de Beck</option>
+<option value="ASQ">ASQ · Preguntas de Detección de Suicidio para Adolescentes</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Vía de administración</label>
+<select class="w-full bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-xl p-3 focus:outline-none">
+<option>App Móvil SentIA (Remota)</option>
+<option>Presencial asistida (En tablet)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Frecuencia programada</label>
+<select class="w-full bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-xl p-3 focus:outline-none">
+<option>Única vez (Inmediata)</option>
+<option>Semanal (Cada 7 días)</option>
+<option>Quincenal (Cada 14 días)</option>
+<option>Mensual (Línea de base)</option>
+</select>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-center gap-space-xs text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-body-md text-tertiary">lock</span>
+<span>Encriptado extremo a extremo con hash psicométrico individual.</span>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-colors" id="cancelModalBtn" type="button">
+            Cancelar
+          </button>
+<button class="px-6 py-2.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container shadow-md transition-all" type="submit">
+            Enviar a Paciente
+          </button>
+</div>
+</form>
+</div>
+</div>
+<script>
+    const assignModal = document.getElementById('assignModal');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const cancelModalBtn = document.getElementById('cancelModalBtn');
+
+    if (openModalBtn && assignModal) {
+      openModalBtn.addEventListener('click', () => assignModal.classList.remove('hidden'));
+    }
+    if (closeModalBtn && assignModal) {
+      closeModalBtn.addEventListener('click', () => assignModal.classList.add('hidden'));
+    }
+    if (cancelModalBtn && assignModal) {
+      cancelModalBtn.addEventListener('click', () => assignModal.classList.add('hidden'));
+    }
+
+    function toggleModal(id) {
+      const drawer = document.getElementById('phq9DetailDrawer');
+      if (drawer) {
+        if (drawer.classList.contains('translate-x-full')) {
+          drawer.classList.remove('translate-x-full');
+        } else {
+          drawer.classList.add('translate-x-full');
+        }
+      }
+    }
+  </script>
+</div></main></div></body></html>

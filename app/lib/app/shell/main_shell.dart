@@ -83,13 +83,13 @@ class ProfilePlaceholder extends ConsumerWidget {
       appBar: AppBar(title: Text(l10n.navProfile)),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(Spacing.xl),
+          padding: const EdgeInsets.all(Spacing.margin),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(l10n.profileComingSoon, textAlign: TextAlign.center),
               if (!isProd) ...[
-                const SizedBox(height: Spacing.xl),
+                const SizedBox(height: Spacing.lg),
                 OutlinedButton.icon(
                   onPressed: () => context.push(Routes.status),
                   icon: const Icon(Icons.dns_outlined),

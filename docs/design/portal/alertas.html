@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline": "#71787e", "on-tertiary-fixed-variant": "#504062", "inverse-surface": "#293236", "tertiary-container": "#705f83", "on-tertiary-container": "#f0deff", "outline-variant": "#c1c7ce", "on-secondary-container": "#416c4b", "on-tertiary": "#ffffff", "surface-tint": "#326380", "inverse-primary": "#9ccded", "error": "#ba1a1a", "surface-container-highest": "#dbe4e9", "on-error-container": "#93000a", "on-primary-fixed": "#001e2d", "secondary-fixed-dim": "#a3d2aa", "on-primary": "#ffffff", "surface-dim": "#d2dbe0", "surface": "#f3fbff", "tertiary": "#58476a", "secondary-fixed": "#beeec5", "on-primary-container": "#cae8ff", "inverse-on-surface": "#e9f2f7", "primary-fixed": "#c6e7ff", "on-secondary-fixed": "#00210c", "on-background": "#141d21", "surface-container-lowest": "#ffffff", "on-secondary": "#ffffff", "primary-fixed-dim": "#9ccded", "on-secondary-fixed-variant": "#254f31", "secondary": "#3d6847", "on-surface": "#141d21", "on-tertiary-fixed": "#231534", "surface-container": "#e6eff4", "surface-container-low": "#ecf5fa", "on-primary-fixed-variant": "#144c67", "background": "#f3fbff", "tertiary-fixed-dim": "#d4bee8", "surface-variant": "#dbe4e9", "tertiary-fixed": "#efdbff", "on-surface-variant": "#41484d", "surface-bright": "#f3fbff", "primary-container": "#3a6b88", "secondary-container": "#bcebc2", "surface-container-high": "#e0eaef", "primary": "#1e536f", "error-container": "#ffdad6", "on-error": "#ffffff" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "margin-desktop": "3rem", "space-md": "1rem", "gutter": "1rem", "space-xxl": "3.5rem", "margin-tablet": "2rem", "space-lg": "1.5rem", "gutter-tablet": "1.5rem", "space-xl": "2.25rem", "margin": "1.25rem", "space-xs": "0.25rem" }, "fontFamily": { "label-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"] }, "fontSize": { "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["17px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low/95 backdrop-blur-xl z-50 flex flex-col justify-between p-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm px-space-xs pt-space-xs"><img alt="Logotipo minimalista y orgánico que representa una hoja suave combinada con un halo o gota de serenidad y calma, trazo limpio y elegante en tono verde salvia y azul suave.. Brand logo. - Primary color: #3a6b88
+- Font: plusJakartaSans
+- Mode: light
+- Roundness: rounded-full
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WiTH1Ra4ulRGJ-DiEloPjaYmjqq7Gv6FYMhJVZExhuhZH32Lk9xctz6afF_KPnC65U2DZBdqt3xbN9okrvp4AIFxLV-7d9PYwuDkJMz-cUGj6VXQOAYzvDvaIqgvChIUecSYy5F8htHFh6KbjlIZ0XzdKGz0O6BhO_tk8HqNElcclvsTQPOPPhL0dH0Z3JEqgVvQ4euHLTAs85QCh4nbuWH6fHAFL44XbTeiIxphQYA1vo8vdc86OJ6jBe"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">SentIA Clínico</span></div><span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm w-fit">Portal Profesional</span></div></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary rounded-lg font-label-lg shadow-sm"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="pacientes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">group</span><span>Pacientes</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="evaluaciones" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">fact_check</span><span>Evaluaciones</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="monitoreo-emocional" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">vital_signs</span><span>Monitoreo emocional</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="conversaciones" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">forum</span><span>Conversaciones</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm transition-all bg-primary-container text-on-primary rounded-lg font-label-lg shadow-sm" data-path="alertas" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">notifications_active</span><span>Alertas</span></div><span class="px-space-xs py-0.5 rounded-full bg-error text-on-error font-label-sm text-label-sm font-semibold">3</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="reportes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">clinical_notes</span><span>Reportes</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="configuracion" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined">settings</span><span>Configuración</span></div></a></nav></div><div class="flex flex-col gap-space-sm pt-space-md"><div class="p-space-sm rounded-lg bg-surface-container-lowest/80 shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex flex-col gap-space-xs"><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UHbOO3IxspFxJnCbs22IbDXY76xvdqIv52gSp4smTVUU-E-8-hcSlYNYybSYElhgIyC92oBGMMrgMevJx_LAnf841r4gBHuPemNefC5SsywogwDwGKU4J1qeZxlu4Ov-h_XWuXB7HsJtyQUQEfY_DEcZFD9Bx8yT3NbEzenT6mgYKQPBDeaQDqOm2F-F1kh8BdrQmdeP5Fceq4FAuVXkzLSvXjpSKHpBrayf8g7AUPx1BVvn2qWHEsMpA"/><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface truncate font-semibold">Dra. Sofía Alarcón</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Psicóloga Clínica - MP 41.820</span></div></div><div class="flex items-center justify-between pt-space-xs"><a class="flex items-center gap-space-xs text-on-surface-variant hover:text-error font-label-sm text-label-sm transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-body-md">logout</span><span>Cerrar sesión</span></a><span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Activa</span></div></div><div class="px-space-xs py-space-xs rounded-lg bg-surface-container-high/60 flex flex-col gap-1"><div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm"><span class="material-symbols-outlined text-body-sm text-tertiary">shield_lock</span><span>Datos protegidos HIPAA/GDPR</span></div><div class="flex items-center gap-space-xs pl-space-xs font-label-sm text-label-sm text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Conexión cifrada 256-bit</span></div></div></div></aside><div class="pl-72 min-h-screen flex flex-col"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between gap-space-md"><div class="flex-1 max-w-xl"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-space-md text-on-surface-variant text-body-lg pointer-events-none">search</span><input class="w-full pl-11 pr-space-md py-space-xs rounded-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all shadow-[0_1px_8px_rgba(0,0,0,0.02)]" placeholder="Buscar paciente por nombre, ID o expediente..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><span class="material-symbols-outlined text-secondary text-body-md">domain</span><span class="font-label-sm text-label-sm text-on-surface-variant">Sede Central · Consultorio 3B</span></div><div class="hidden md:flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-body-sm">schedule</span><span>Última actividad: Hoy 11:42 AM</span></div><div class="flex items-center gap-space-xs"><button class="relative p-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span></button><button class="p-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined">filter_alt</span></button></div><div class="flex items-center gap-space-xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_8px_rgba(0,0,0,0.06)]" src="https://lh3.googleusercontent.com/aida/AEtjO1UHbOO3IxspFxJnCbs22IbDXY76xvdqIv52gSp4smTVUU-E-8-hcSlYNYybSYElhgIyC92oBGMMrgMevJx_LAnf841r4gBHuPemNefC5SsywogwDwGKU4J1qeZxlu4Ov-h_XWuXB7HsJtyQUQEfY_DEcZFD9Bx8yT3NbEzenT6mgYKQPBDeaQDqOm2F-F1kh8BdrQmdeP5Fceq4FAuVXkzLSvXjpSKHpBrayf8g7AUPx1BVvn2qWHEsMpA"/><span class="hidden lg:inline font-label-md text-label-md text-on-surface font-medium">Dra. Sofía Alarcón</span></div></div></header><main class="w-full pt-16 bg-surface flex-1 px-space-lg py-space-md"><div class="flex flex-col w-full gap-space-xl">
+<!-- Top Banner & Context -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-body-md" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+<span>Triaje Algorítmico Continuo · Protocolo Nivel III</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Alertas y Triaje Clínico</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Supervisión en tiempo real de situaciones que requieren atención prioritaria, contención inmediata o intervención temprana.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors font-label-md text-label-md shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-md">tune</span>
+<span>Configurar umbrales</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-md">history</span>
+<span>Historial de triaje</span>
+</button>
+</div>
+</section>
+<!-- Metric Cards Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Críticas -->
+<div class="relative overflow-hidden rounded-lg bg-surface-container-lowest p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-error font-semibold">Prioridad Inmediata</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Críticas activas</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-error-container/60 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-headline-sm" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl font-bold text-error tracking-tight">1</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+          Respuesta en &lt; 2 hrs
+        </span>
+</div>
+<div class="w-full bg-error-container/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full w-1/4"></div>
+</div>
+</div>
+<!-- Card 2: Alta Prioridad -->
+<div class="relative overflow-hidden rounded-lg bg-surface-container-lowest p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-semibold">Atención Temprana</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Alta prioridad</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/60 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-headline-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl font-bold text-tertiary tracking-tight">2</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Revisar durante la jornada</span>
+</div>
+<div class="w-full bg-tertiary-fixed/50 h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full w-1/2"></div>
+</div>
+</div>
+<!-- Card 3: Media / Preventiva -->
+<div class="relative overflow-hidden rounded-lg bg-surface-container-lowest p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Tendencias &amp; Hábitos</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Media / Preventiva</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-fixed/60 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-headline-sm">monitoring</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl font-bold text-primary tracking-tight">5</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Próxima sesión ordinaria</span>
+</div>
+<div class="w-full bg-primary-fixed/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full w-3/5"></div>
+</div>
+</div>
+<!-- Card 4: Resueltas esta semana -->
+<div class="relative overflow-hidden rounded-lg bg-surface-container-lowest p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Efectividad Clínica</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Resueltas esta semana</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container/60 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-headline-sm" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl font-bold text-secondary tracking-tight">18</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">+4 vs semana anterior</span>
+</div>
+<div class="w-full bg-secondary-container/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full w-4/5"></div>
+</div>
+</div>
+</section>
+<!-- Filter Pills Bar & Quick Search -->
+<section class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md">
+<!-- Filter Pills -->
+<div class="flex items-center flex-wrap gap-space-xs" id="alert-filters">
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5" data-filter="all" type="button">
+<span>Todas</span>
+<span class="px-1.5 py-0.2 rounded-full bg-on-primary/20 text-on-primary font-label-sm text-label-sm font-semibold">8</span>
+</button>
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5" data-filter="critica" type="button">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Crítica</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">1</span>
+</button>
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5" data-filter="alta" type="button">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Alta</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">2</span>
+</button>
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5" data-filter="media" type="button">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Media</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">3</span>
+</button>
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5" data-filter="baja" type="button">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span>Baja</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">2</span>
+</button>
+<button class="filter-pill px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5" data-filter="atendidas" type="button">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Atendidas</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">18</span>
+</button>
+</div>
+<!-- Supplementary view modes & quick sorting -->
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant hidden sm:inline">Ordenar por:</span>
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest text-on-surface font-label-md text-label-md py-1.5 pl-space-md pr-8 rounded-full shadow-sm focus:outline-none cursor-pointer">
+<option>Mayor severidad primero</option>
+<option>Más recientes primero</option>
+<option>Paciente (A-Z)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-md pointer-events-none">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Detailed Clinical Alert Cards Stream -->
+<section class="flex flex-col gap-space-md" id="alerts-container">
+<!-- ALERT 1: CRÍTICA -->
+<article class="alert-card rounded-lg bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg" data-severity="critica">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-space-md flex-1 min-w-0">
+<!-- Patient Identity -->
+<div class="flex items-center gap-space-md min-w-[220px]">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Close-up portrait of a thoughtful young woman in her late twenties with soft neutral lighting, sitting calmly against a minimalist warm white and sage interior background, representing a mental health clinic patient." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnR8Jn8nwSCeoI_xwijvK8NKNbBkbVjUbxBDxfqtoIgpC_j9pd6ad6htuNW2hUrFuOcnde7z74BkCw2M8qbZArhTlqzhJAPSBPzXzvuJjz9s_pSftbhl9R2ivNpGhR8C9XY8bWqPe1GQZgQAN63NMd7yG5d4oGUobnOuR8LjNkN3RifU24siYTbxS_8y2kisONKW2yuQr8yA0Itjyk1khCyvfpyb95x4zP0jHLvO97c0_2L8QKMdTLhQ"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-error border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Camila Valenzuela</span>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span>ID: PAC-4820</span>
+<span>·</span>
+<span>28 años</span>
+</div>
+</div>
+</div>
+<!-- Detection Meta & Trigger -->
+<div class="flex flex-col gap-1 flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Priority Badge -->
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+              CRÍTICA
+            </span>
+<!-- Status Badge -->
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+              Requiere revisión
+            </span>
+<span class="font-label-sm text-label-sm text-outline">
+              Hoy · 10:36 AM (hace 18 min)
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight mt-0.5">
+            Pico agudo de ansiedad con componente fóbico súbito
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+            Detectado durante check-in conversacional matutino. Registro de taquicardia subjetiva percibida (&gt;110 bpm) y discurso de desesperanza con frase clave: <span class="italic text-on-surface">"Siento que voy a perder el control frente a todos en la reunión"</span>.
+          </p>
+<div class="flex items-center gap-space-xs text-tertiary font-label-sm text-label-sm mt-1">
+<span class="material-symbols-outlined text-body-sm">psychology</span>
+<span>Marcador semántico: Activación somática simpática nivel 8/10</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-space-xs pt-space-xs lg:pt-0 border-t lg:border-t-0 border-surface-container-high/40 min-w-[210px]">
+<button class="w-full sm:w-auto lg:w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-md">forum</span>
+<span>Revisar conversación</span>
+</button>
+<div class="flex items-center gap-space-xs w-full justify-end">
+<button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-sm">check_circle</span>
+<span>Marcar atendida</span>
+</button>
+<button class="p-1.5 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Ver expediente completo" type="button">
+<span class="material-symbols-outlined text-body-lg">folder_shared</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ALERT 2: ALTA -->
+<article class="alert-card rounded-lg bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg" data-severity="alta">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-space-md flex-1 min-w-0">
+<!-- Patient Identity -->
+<div class="flex items-center gap-space-md min-w-[220px]">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a middle-aged man with salt and pepper hair in soft natural daylight, dressed in a muted blue linen shirt against an architectural clinic backdrop, calm and serene expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFbgvinHpGtZWjlWL1tZJ4KBAizqBXhetaFonb7gnR46SjnR57RJRXfACiImjMa4llRZJSbVJrKwrYkNlJ2oiJX2cR5uPOByZLuRDIcs80aE5oTE2bcgjm3ZMIBUWeC-tgY3_HL-eEL5dbn0a8bP7vALZ8EvAcC_nOSgHWyzLqL2kGSwMhc0Zaw82bCXUyqjojSe9fhJriQDHuUmipTujZ_wSCjGdr8fbQ9sJfSuNxpQkH6805EB1cxw"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-tertiary border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Ignacio Morales R.</span>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span>ID: PAC-3912</span>
+<span>·</span>
+<span>44 años</span>
+</div>
+</div>
+</div>
+<!-- Detection Meta & Trigger -->
+<div class="flex flex-col gap-1 flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Priority Badge -->
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+              ALTA
+            </span>
+<!-- Status Badge -->
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-primary-fixed/50 text-on-primary-fixed-variant font-label-sm text-label-sm">
+              En seguimiento
+            </span>
+<span class="font-label-sm text-label-sm text-outline">
+              Hoy · 08:14 AM
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight mt-0.5">
+            Marcador de pensamiento catastrófico reiterado
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+            Detectado en diario guiado nocturno. Presenta 4 patrones de polarización cognitiva y sobregeneralización en un lapso de 48 horas relacionados con el ámbito laboral: <span class="italic text-on-surface">"Todo mi esfuerzo fue inútil, nada volverá a encajar"</span>.
+          </p>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span class="material-symbols-outlined text-body-sm text-tertiary">schema</span>
+<span>Distorsión TCC: Pensamiento de todo o nada (severidad 7.4/10)</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-space-xs pt-space-xs lg:pt-0 border-t lg:border-t-0 border-surface-container-high/40 min-w-[210px]">
+<button class="w-full sm:w-auto lg:w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+<span>Revisar alerta</span>
+</button>
+<div class="flex items-center gap-space-xs w-full justify-end">
+<button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-sm">check_circle</span>
+<span>Marcar atendida</span>
+</button>
+<button class="p-1.5 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Ver expediente completo" type="button">
+<span class="material-symbols-outlined text-body-lg">folder_shared</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ALERT 3: ALTA -->
+<article class="alert-card rounded-lg bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg" data-severity="alta">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-space-md flex-1 min-w-0">
+<!-- Patient Identity -->
+<div class="flex items-center gap-space-md min-w-[220px]">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a young man with curly hair and gentle warm brown eyes, dressed in casual knitwear, looking into the distance with subtle concern, soft ambient green and beige lighting in a therapy space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3P02Y5X2YUUnmWF7SPJ84ToN6DSQGpt4dSPh5yoGqAHSfdUjMuynd9fSL8jfAO3zw40qg07tJYqSJMRYY60Z5DF9DiI7XcnfaOPA5aawUGtoQhoyhFL2nLyGGIDyBh8QowJO_7R9c5ufngqMh4OWy6gZRdBDn5yn5JxpHkp92kzT22jS5rNs1JZOK2-BSf8CxTKCv5QOUmmZLou6wYxGJPxR8H4ndcBnDqjpSGHGLWpZE3RePTwPxDA"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-tertiary border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Mateo Benítez Soler</span>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span>ID: PAC-5104</span>
+<span>·</span>
+<span>22 años</span>
+</div>
+</div>
+</div>
+<!-- Detection Meta & Trigger -->
+<div class="flex flex-col gap-1 flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Priority Badge -->
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+              ALTA
+            </span>
+<!-- Status Badge -->
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+              Requiere revisión
+            </span>
+<span class="font-label-sm text-label-sm text-outline">
+              Ayer · 22:50 PM
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight mt-0.5">
+            Insomnio severo autoinformado (3 noches consecutivas)
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+            Reporte de latencia de sueño superior a 150 minutos y despertares precoces con rumiación ansiosa sostenida. Adherencia al registro de higiene de sueño decayó al 30%.
+          </p>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span class="material-symbols-outlined text-body-sm text-primary">bedtime</span>
+<span>Biometría de descanso: 3.2 hrs estimadas · Tendencia descendente</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-space-xs pt-space-xs lg:pt-0 border-t lg:border-t-0 border-surface-container-high/40 min-w-[210px]">
+<button class="w-full sm:w-auto lg:w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+<span>Revisar alerta</span>
+</button>
+<div class="flex items-center gap-space-xs w-full justify-end">
+<button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-sm">check_circle</span>
+<span>Marcar atendida</span>
+</button>
+<button class="p-1.5 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Ver expediente completo" type="button">
+<span class="material-symbols-outlined text-body-lg">folder_shared</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ALERT 4: MEDIA -->
+<article class="alert-card rounded-lg bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg" data-severity="media">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-space-md flex-1 min-w-0">
+<!-- Patient Identity -->
+<div class="flex items-center gap-space-md min-w-[220px]">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Studio portrait of a serene woman in her late thirties with minimalist spectacles and hair tied back softly, natural aesthetic, gentle blue and slate grey clothing, calm professional demeanor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXy0Y-_D0PBmqhe2fpWq7loGaO3OmFkLZYi1aEtOzXR3n9UMInS97lErFpYYcUQxHd-Lw9fQRbHaTSKNRWodm5AcxXU2Yf3VCPhoO8LHAX6qw0iHOSXPvootyPD94ncupsBaqmBM1lyHzmV8O3gBSqTDBf-wQqyx_RzEAnie4LbOm6uFG82oizEeyd0SlaQGpn2mXlkFYLdXwLq80flwkzvMdXrlPOMgKOFw3qnk9AmEOREhEio-4FNg"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-primary-container border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Lucía Domínguez</span>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span>ID: PAC-2087</span>
+<span>·</span>
+<span>37 años</span>
+</div>
+</div>
+</div>
+<!-- Detection Meta & Trigger -->
+<div class="flex flex-col gap-1 flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Priority Badge -->
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+              MEDIA
+            </span>
+<!-- Status Badge -->
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+              Requiere revisión
+            </span>
+<span class="font-label-sm text-label-sm text-outline">
+              13/09/2026 · 19:10 PM
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight mt-0.5">
+            Omisión consecutiva de check-ins programados
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+            Sin registro de pulso emocional durante 4 días continuos tras un período de estrés reactivo. No responde al recordatorio empático automático de SentIA.
+          </p>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span class="material-symbols-outlined text-body-sm text-secondary">event_busy</span>
+<span>Ruptura de hábito de monitorización · Sesión agendada para el jueves</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-space-xs pt-space-xs lg:pt-0 border-t lg:border-t-0 border-surface-container-high/40 min-w-[210px]">
+<button class="w-full sm:w-auto lg:w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+<span>Revisar alerta</span>
+</button>
+<div class="flex items-center gap-space-xs w-full justify-end">
+<button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-sm">check_circle</span>
+<span>Marcar atendida</span>
+</button>
+<button class="p-1.5 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Ver expediente completo" type="button">
+<span class="material-symbols-outlined text-body-lg">folder_shared</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ALERT 5: BAJA / PREVENTIVA -->
+<article class="alert-card rounded-lg bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg" data-severity="baja">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-space-md flex-1 min-w-0">
+<!-- Patient Identity -->
+<div class="flex items-center gap-space-md min-w-[220px]">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Warm photographic portrait of an older senior gentleman with a trimmed silver beard and friendly expression, wearing a soft moss-green cardigan in a sunny, peaceful room." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJVKG8rtBSu_i2yAfevEqMoW66JrGn0jQZXiUSOAuSZPMcmZVzHybFN0T1wERaYRzUc9R-5U2uSdeqAxv5lXWxmij5YGRlo3AuulLOV_EAatpIernKuM5_ou_RdoAVnrpYRbXmKA_r29nJJJuqpu5haFPSzJ4ujObVPR3OZO_jHxkhkIMjqi2Hd9LAUhZ8BYCvpNtrE5tj_zLcRiJynHCNAAxA_YM-YZied2pWI1MKvbZSADeCN2GxIw"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-outline border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Arturo Sotomayor</span>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span>ID: PAC-1934</span>
+<span>·</span>
+<span>61 años</span>
+</div>
+</div>
+</div>
+<!-- Detection Meta & Trigger -->
+<div class="flex flex-col gap-1 flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Priority Badge -->
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+              BAJA
+            </span>
+<!-- Status Badge -->
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+              En seguimiento
+            </span>
+<span class="font-label-sm text-label-sm text-outline">
+              12/09/2026 · 16:45 PM
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight mt-0.5">
+            Leve incremento en vocabulario de evitación social
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+            Análisis léxico señala uso reiterado de términos de fatiga vinculados a encuentros familiares de fin de semana. Estado basal anímico estable (6/10).
+          </p>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span class="material-symbols-outlined text-body-sm text-primary">diversity_3</span>
+<span>Mapeo relacional: Indicador de repliegue defensivo moderado</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-space-xs pt-space-xs lg:pt-0 border-t lg:border-t-0 border-surface-container-high/40 min-w-[210px]">
+<button class="w-full sm:w-auto lg:w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+<span>Revisar alerta</span>
+</button>
+<div class="flex items-center gap-space-xs w-full justify-end">
+<button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-body-sm">check_circle</span>
+<span>Marcar atendida</span>
+</button>
+<button class="p-1.5 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Ver expediente completo" type="button">
+<span class="material-symbols-outlined text-body-lg">folder_shared</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ALERT 6: ATENDIDA (Ejemplo histórico reciente) -->
+<article class="alert-card rounded-lg bg-surface-container-lowest/60 p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg opacity-85" data-severity="atendidas">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-space-md flex-1 min-w-0">
+<!-- Patient Identity -->
+<div class="flex items-center gap-space-md min-w-[220px]">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Warm, serene portrait of a young woman with dark hair in a ponytail, sitting by a sunlit window with a warm ceramic cup, soft aesthetic and tranquil atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9zLF6C3_Fgu4Kfyyl84Hm5R-jy8S6WwxL36ceRp_fAeLu3gtydxvXF3zKWTmOy_MIoIPI3fkBGPaEefVQEMt1lEfydKdyuxg8J3wX4HPnavbf5xPJpTCg4hv0CJNWMb1TeHHL-gtRxLyWmQalvcORnKbMp14iAYOE2LyOBJNko7aA8IU8tjDT1pb5Oji0RnAn8BCoUC0iV3KdvyuK1jhOyiW8p8gvH9daLwiH9vNb_uAzeXIGKTeIFw"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-secondary border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Elena Castro Ramos</span>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span>ID: PAC-3108</span>
+<span>·</span>
+<span>31 años</span>
+</div>
+</div>
+</div>
+<!-- Detection Meta & Trigger -->
+<div class="flex flex-col gap-1 flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<!-- Priority Badge -->
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              ATENDIDA
+            </span>
+<!-- Resolution Meta -->
+<span class="font-label-sm text-label-sm text-secondary font-medium">
+              Resuelta hoy 11:20 AM por Dra. Alarcón
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight mt-0.5">
+            Labilidad emocional tras cambio de esquema farmacológico
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+            Se realizó llamada de contención telefónica breve de 12 minutos. Se validó malestar adaptativo transitorio y se reprogramó adelanto de consulta con Psiquiatría.
+          </p>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-space-xs pt-space-xs lg:pt-0 border-t lg:border-t-0 border-surface-container-high/40 min-w-[210px]">
+<button class="w-full sm:w-auto lg:w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-body-md">clinical_notes</span>
+<span>Ver nota de evolución</span>
+</button>
+<div class="flex items-center gap-space-xs w-full justify-end">
+<button class="inline-flex items-center gap-1 px-space-sm py-1.5 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" title="Ver expediente completo" type="button">
+<span class="material-symbols-outlined text-body-sm">folder_shared</span>
+<span>Expediente</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+<!-- Clinical Protocol & Ethics Footer Note -->
+<section class="rounded-lg bg-surface-container-low p-space-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-full bg-tertiary-fixed/40 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-headline-sm">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Criterio de Triaje SentIA (v2.4 - ISO 13485)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+          Los algoritmos actúan como soporte de detección preliminar. La confirmación diagnóstica y conducta clínica son de exclusiva responsabilidad del profesional tratante.
+        </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0 self-end sm:self-auto">
+<button class="text-primary hover:underline font-label-sm text-label-sm" type="button">
+        Protocolo ético de emergencias →
+      </button>
+</div>
+</section>
+</div>
+<!-- Interactive Client-side Filter Logic -->
+<script>
+  (function() {
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    const alertCards = document.querySelectorAll('.alert-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Style updates for pill buttons
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+          const badge = b.querySelector('span:last-child');
+          if (badge) {
+            badge.classList.remove('bg-on-primary/20', 'text-on-primary');
+            badge.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+          }
+        });
+
+        btn.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+        btn.classList.add('bg-primary', 'text-on-primary');
+        const activeBadge = btn.querySelector('span:last-child');
+        if (activeBadge) {
+          activeBadge.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+          activeBadge.classList.add('bg-on-primary/20', 'text-on-primary');
+        }
+
+        // Filtering cards
+        alertCards.forEach(card => {
+          const cardSeverity = card.getAttribute('data-severity');
+          if (filter === 'all' || cardSeverity === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  })();
+</script></main></div></body></html>

@@ -22,6 +22,7 @@ Las propuestas de terceros usaban stacks distintos (.NET/MAUI, Kotlin/KMP, Node)
 - Calidad → `10-calidad-y-pruebas.md`
 - Reglas para agentes de IA → `11-guia-para-agentes-ia.md`
 - Huecos → `12-decisiones-pendientes.md`
+- Diseño visual y pantallas → `design/README.md`
 
 ## Convenciones de estos documentos
 - **[MVP]** = entra en la primera versión publicable. **[ESC]** = escalable/posterior.

@@ -82,8 +82,9 @@ Reglas:
 - Subtítulos en voz; nada se comunica solo por color.
 
 ## Diseño
-- Material 3, `ColorScheme.fromSeed` con paleta calmante [PENDIENTE: identidad visual final].
-- Tokens (espaciado 4/8/12/16/24/32, radios, tipografía) en `app/theme/tokens.dart`; widgets usan tokens, no números mágicos.
+- Sistema "Serena & Calma" ([docs/design](design/README.md), [ADR-0008](adr/0008-identidad-visual.md)): `ColorScheme` completo en `app/theme/app_colors.dart`, colores extra en `SentiaColors` (`context.sentiaColors`).
+- Tokens (espaciado 4/8/16/24/36/56, márgenes 20/32, radios 8/16/24/32/48/píldora) en `app/theme/tokens.dart`; widgets usan tokens y `textTheme`, no números mágicos ni `TextStyle` con fuente.
+- Antes de construir una pantalla, compárala con su captura en `docs/design/` y revisa la §Revisión.
 - Botón de crisis (`SCrisisButton`) en AppBar de chat, voz y resultados de tests.
 
 ## Estado y errores

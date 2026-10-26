@@ -49,6 +49,13 @@ export class MeController {
     return this.users.updateProfile(user.userId, user.subjectId, dto);
   }
 
+  @Delete('emergency-contact')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse()
+  clearEmergencyContact(@CurrentUser() user: AuthUser): Promise<void> {
+    return this.users.clearEmergencyContact(user.userId, user.subjectId);
+  }
+
   /** Exportación de datos personales (ARCO: acceso y portabilidad). */
   @Get('export')
   @ApiOkResponse({

@@ -9,11 +9,48 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**meClearEmergencyContact**](MeApi.md#meclearemergencycontact) | **DELETE** /v1/me/emergency-contact | 
 [**meExport**](MeApi.md#meexport) | **GET** /v1/me/export | 
 [**meGet**](MeApi.md#meget) | **GET** /v1/me | 
 [**meRemove**](MeApi.md#meremove) | **DELETE** /v1/me | 
 [**meUpdate**](MeApi.md#meupdate) | **PATCH** /v1/me | 
 
+
+# **meClearEmergencyContact**
+> meClearEmergencyContact()
+
+
+
+### Example
+```dart
+import 'package:sentia_api/api.dart';
+
+final api = SentiaApi().getMeApi();
+
+try {
+    api.meClearEmergencyContact();
+} on DioException catch (e) {
+    print('Exception when calling MeApi->meClearEmergencyContact: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **meExport**
 > Map<String, Object> meExport()

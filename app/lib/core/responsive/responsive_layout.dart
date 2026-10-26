@@ -39,6 +39,8 @@ class ConstrainedContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Align(
     alignment: Alignment.topCenter,
+    // Alto del hijo: sin esto, en barras inferiores ocupa toda la pantalla.
+    heightFactor: 1,
     child: ConstrainedBox(
       constraints: BoxConstraints(maxWidth: maxWidth),
       child: child,

@@ -1,0 +1,26 @@
+{
+  "_comment": "Recursos de ayuda en crisis para México (docs/08). Cada número se verificó en la página oficial indicada en verifiedSourceUrl en la fecha verifiedAt. clinicalApproval = pending hasta que el responsable clínico lo apruebe [VALIDAR-CLÍNICO]. Copia idéntica en app/assets/safety/resources_mx.json para uso sin conexión (CI verifica que coincidan).",
+  "countryCode": "MX",
+  "resources": [
+    {
+      "name": "Emergencias 911",
+      "description": "Número único nacional de emergencias. Si tu vida o la de alguien más está en peligro inmediato, llama ahora.",
+      "phone": "911",
+      "hours": "24 horas",
+      "sortOrder": 0,
+      "verifiedSourceUrl": "https://www.gob.mx/911",
+      "verifiedAt": "2026-10-25",
+      "clinicalApproval": "pending"
+    },
+    {
+      "name": "Línea de la Vida",
+      "description": "Orientación telefónica gratuita en salud mental y adicciones, atendida por profesionales de la salud mental (CONASAMA, Secretaría de Salud).",
+      "phone": "8009112000",
+      "hours": "24 horas, los 365 días del año",
+      "sortOrder": 1,
+      "verifiedSourceUrl": "https://www.gob.mx/conasama/articulos/linea-de-la-vida-800-911-2000",
+      "verifiedAt": "2026-10-25",
+      "clinicalApproval": "pending"
+    }
+  ]
+}

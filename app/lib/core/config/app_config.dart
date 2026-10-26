@@ -28,6 +28,10 @@ class AppConfig {
     Flavor.prod: 'https://api.sentia.invalid',
   };
 
+  /// Versión de la app; debe coincidir con `version` de pubspec.yaml (hay un
+  /// test que lo verifica). Se registra con cada consentimiento (docs/09).
+  static const appVersion = '0.1.0+1';
+
   final Flavor flavor;
   final String apiBaseUrl;
 }

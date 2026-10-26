@@ -183,6 +183,17 @@ paths:
         - bearer: []
       tags:
         - me
+  /v1/me/emergency-contact:
+    delete:
+      operationId: meClearEmergencyContact
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - me
   /v1/me/export:
     get:
       operationId: meExport
@@ -454,13 +465,10 @@ components:
       properties:
         displayName:
           type: string
-          nullable: true
         timezone:
           type: string
         emergencyContact:
-          nullable: true
           description: Opcional. La persona debe estar informada de que la registras (docs/02).
-          type: object
           allOf:
             - $ref: '#/components/schemas/EmergencyContactDto'
     DeleteAccountDto:

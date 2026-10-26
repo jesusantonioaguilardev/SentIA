@@ -29,6 +29,8 @@ dependencies:
   riverpod_annotation: ^4.0.7
   sentia_api:
     path: packages/sentia_api # generado desde backend/openapi.yaml
+  share_plus: ^13.3.1 # exportación de datos (ARCO) por la hoja de compartir
+  url_launcher: ^6.3.3 # llamar a líneas de ayuda en crisis desde la app (docs/08)
   uuid: ^4.6.0
 
 dev_dependencies:
@@ -43,3 +45,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    # Copia de backend/src/database/seed-data/safety-resources.mx.json para que
+    # la ayuda de crisis funcione sin conexión (docs/08). CI verifica que coincidan.
+    - assets/safety/

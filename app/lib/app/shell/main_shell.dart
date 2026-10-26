@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sentia2/app/theme/tokens.dart';
-import 'package:sentia2/core/config/app_config.dart';
 import 'package:sentia2/core/responsive/responsive_layout.dart';
-import 'package:sentia2/core/routing/routes.dart';
 import 'package:sentia2/l10n/app_localizations.dart';
 import 'package:sentia2/shared/widgets/rounded_bottom_nav.dart';
 
@@ -63,41 +59,6 @@ class MainShell extends StatelessWidget {
             const VerticalDivider(width: 1),
             Expanded(child: shell),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-/// Pestaña de perfil hasta Etapa 1. En flavors que no son prod da acceso a
-/// la pantalla de estado del servidor.
-class ProfilePlaceholder extends ConsumerWidget {
-  const new({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final isProd = ref.watch(appConfigProvider).flavor == Flavor.prod;
-
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.navProfile)),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(Spacing.margin),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(l10n.profileComingSoon, textAlign: TextAlign.center),
-              if (!isProd) ...[
-                const SizedBox(height: Spacing.lg),
-                OutlinedButton.icon(
-                  onPressed: () => context.push(Routes.status),
-                  icon: const Icon(Icons.dns_outlined),
-                  label: Text(l10n.statusSubtitle),
-                ),
-              ],
-            ],
-          ),
         ),
       ),
     );

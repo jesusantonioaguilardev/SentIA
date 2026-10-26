@@ -47,10 +47,8 @@ export class UsersService {
       ...(contact === undefined
         ? {}
         : {
-            emergencyContactNameEnc: this.crypto.encryptOptional(contact?.name),
-            emergencyContactPhoneEnc: this.crypto.encryptOptional(
-              contact?.phone,
-            ),
+            emergencyContactNameEnc: this.crypto.encrypt(contact.name),
+            emergencyContactPhoneEnc: this.crypto.encrypt(contact.phone),
           }),
     };
     await this.prisma.userProfile.upsert({
@@ -64,6 +62,21 @@ export class UsersService {
       resourceType: 'user_profile',
     });
     return this.getProfile(userId);
+  }
+
+  async clearEmergencyContact(
+    userId: string,
+    subjectId: string,
+  ): Promise<void> {
+    await this.prisma.userProfile.update({
+      where: { userId },
+      data: { emergencyContactNameEnc: null, emergencyContactPhoneEnc: null },
+    });
+    await this.audit.record({
+      action: 'user.profile_updated',
+      actorSubjectId: subjectId,
+      resourceType: 'emergency_contact',
+    });
   }
 
   /**

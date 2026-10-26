@@ -5,6 +5,7 @@ import 'package:sentia2/core/routing/routes.dart';
 import 'package:sentia2/features/mood/domain/entities/mood_entry.dart';
 import 'package:sentia2/features/mood/presentation/controllers/mood_controller.dart';
 import 'package:sentia2/features/mood/presentation/mood_type_style.dart';
+import 'package:sentia2/shared/widgets/crisis_button.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const new({super.key});
@@ -325,17 +326,8 @@ class _CustomAppBar extends StatelessWidget {
             ),
           ],
         ),
-        CircleAvatar(
-          radius: 18,
-          backgroundColor: colorScheme.secondaryContainer,
-          child: Text(
-            'A',
-            style: TextStyle(
-              color: colorScheme.onSecondaryContainer,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        // TODO(etapa-2): encabezado y saludo con datos reales del perfil.
+        const CrisisButton(),
       ],
     );
   }

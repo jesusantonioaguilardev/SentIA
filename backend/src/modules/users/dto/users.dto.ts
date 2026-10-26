@@ -41,26 +41,25 @@ export class ProfileDto {
 export class UpdateProfileDto {
   static schema = z
     .object({
-      displayName: z.string().trim().min(1).max(60).nullable().optional(),
+      displayName: z.string().trim().min(1).max(60).optional(),
       timezone: z.string().min(3).max(64).optional(),
-      /** null borra el contacto de emergencia. */
-      emergencyContact: emergencyContact.nullable().optional(),
+      /** Para borrarlo: DELETE /v1/me/emergency-contact. */
+      emergencyContact: emergencyContact.optional(),
     })
     .strict();
 
-  @ApiPropertyOptional({ nullable: true, type: String })
-  displayName?: string | null;
+  @ApiPropertyOptional()
+  displayName?: string;
 
   @ApiPropertyOptional()
   timezone?: string;
 
   @ApiPropertyOptional({
-    nullable: true,
     type: EmergencyContactDto,
     description:
       'Opcional. La persona debe estar informada de que la registras (docs/02).',
   })
-  emergencyContact?: EmergencyContactDto | null;
+  emergencyContact?: EmergencyContactDto;
 }
 
 export class DeleteAccountDto {

@@ -1,227 +1,124 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:sentia2/app/theme/tokens.dart';
 import 'package:sentia2/core/routing/routes.dart';
-import 'package:sentia2/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:sentia2/features/auth/domain/auth_validators.dart';
+import 'package:sentia2/features/auth/presentation/auth_error_message.dart';
+import 'package:sentia2/features/auth/presentation/controllers/auth_form_controllers.dart';
+import 'package:sentia2/features/auth/presentation/widgets/auth_layout.dart';
+import 'package:sentia2/l10n/app_localizations.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
+/// Inicio de sesión (docs/design/app/login.png, sin "Continuar con Google").
+class LoginScreen extends HookConsumerWidget {
   const new({super.key});
 
   @override
-  ConsumerState<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends ConsumerState<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _obscurePassword = true;
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final authState = ref.watch(authProvider);
+    final formKey = useMemoized(GlobalKey<FormState>.new);
+    final email = useTextEditingController();
+    final password = useTextEditingController();
+    final obscure = useState(true);
+    final state = ref.watch(loginFormProvider);
 
-    // Escuchar cambios de estado para errores
-    ref.listen<AuthState>(authProvider, (previous, next) {
-      if (next case AuthError(:final message)) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(message)));
-      }
-    });
+    Future<void> submit() async {
+      if (!formKey.currentState!.validate()) return;
+      await ref
+          .read(loginFormProvider.notifier)
+          .submit(email: email.text, password: password.text);
+    }
 
-    final isLoading = authState is AuthLoading;
-
-    return Scaffold(
-      backgroundColor: colorScheme.surface,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                const SizedBox(height: 40),
-                Center(
-                  child: Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: colorScheme.primaryContainer.withValues(
-                        alpha: 0.2,
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Icon(
-                            Icons.water_drop,
-                            size: 40,
-                            color: colorScheme.primary,
-                          ),
-                          Positioned(
-                            left: 10,
-                            top: 25,
-                            child: Container(
-                              width: 12,
-                              height: 12,
-                              decoration: BoxDecoration(
-                                color: colorScheme.secondary.withValues(
-                                  alpha: 0.6,
-                                ),
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'SentIA',
-                  style: theme.textTheme.headlineLarge?.copyWith(
-                    color: colorScheme.onSurface,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Un espacio para hablar y sentirte\nacompañado.',
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(height: 32),
-                Card(
-                  color: colorScheme.surfaceContainerLowest,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildLabel(theme, 'Correo electrónico'),
-                        TextFormField(
-                          controller: _emailController,
-                          decoration: const InputDecoration(
-                            hintText: 'tu@correo.com',
-                            prefixIcon: Icon(Icons.email_outlined),
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (v) => (v == null || !v.contains('@'))
-                              ? 'Ingresa un correo válido, por favor.'
-                              : null,
-                        ),
-                        const SizedBox(height: 20),
-                        _buildLabel(theme, 'Contraseña'),
-                        TextFormField(
-                          controller: _passwordController,
-                          obscureText: _obscurePassword,
-                          decoration: InputDecoration(
-                            hintText: '••••••••',
-                            prefixIcon: const Icon(Icons.lock_outline),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _obscurePassword
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
-                              ),
-                              onPressed: () => setState(
-                                () => _obscurePassword = !_obscurePassword,
-                              ),
-                            ),
-                          ),
-                          validator: (v) => (v == null || v.isEmpty)
-                              ? 'La contraseña es necesaria para entrar.'
-                              : null,
-                        ),
-                        const SizedBox(height: 12),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () =>
-                                context.push(Routes.forgotPassword),
-                            child: const Text('¿Olvidaste tu contraseña?'),
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: isLoading ? null : _handleLogin,
-                            child: isLoading
-                                ? const SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                : const Text('Iniciar sesión'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '¿No tienes una cuenta?',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () => context.push(Routes.signup),
-                      child: const Text('Crear cuenta'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 32),
-              ],
+    return AuthLayout(
+      title: l10n.appTitle,
+      subtitle: l10n.appTagline,
+      footer: Wrap(
+        alignment: WrapAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          Text(
+            l10n.authNoAccount,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
             ),
+          ),
+          TextButton(
+            onPressed: () => context.go(Routes.signup),
+            style: TextButton.styleFrom(
+              foregroundColor: theme.colorScheme.secondary,
+            ),
+            child: Text(l10n.authCreateAccount),
+          ),
+        ],
+      ),
+      child: AutofillGroup(
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              FieldLabel(l10n.authEmailLabel),
+              TextFormField(
+                controller: email,
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
+                autofillHints: const [AutofillHints.email],
+                decoration: InputDecoration(
+                  hintText: l10n.authEmailHint,
+                  prefixIcon: const Icon(Icons.mail_outline),
+                ),
+                validator: (v) => AuthValidators.isEmail(v ?? '')
+                    ? null
+                    : l10n.validationEmail,
+              ),
+              const SizedBox(height: Spacing.md),
+              FieldLabel(l10n.authPasswordLabel),
+              TextFormField(
+                controller: password,
+                obscureText: obscure.value,
+                textInputAction: TextInputAction.done,
+                autofillHints: const [AutofillHints.password],
+                onFieldSubmitted: (_) => submit(),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.lock_outline),
+                  suffixIcon: IconButton(
+                    tooltip: obscure.value
+                        ? l10n.authShowPassword
+                        : l10n.authHidePassword,
+                    icon: Icon(
+                      obscure.value
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
+                    ),
+                    onPressed: () => obscure.value = !obscure.value,
+                  ),
+                ),
+                validator: (v) =>
+                    (v ?? '').isEmpty ? l10n.validationRequired : null,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => context.push(Routes.forgotPassword),
+                  child: Text(l10n.authForgotPassword),
+                ),
+              ),
+              if (state case AsyncError(:final error)) ...[
+                FormError(authErrorMessage(error, l10n)),
+                const SizedBox(height: Spacing.md),
+              ],
+              SubmitButton(
+                label: l10n.authLoginButton,
+                icon: Icons.arrow_forward,
+                loading: state.isLoading,
+                onPressed: submit,
+              ),
+            ],
           ),
         ),
       ),
     );
-  }
-
-  Widget _buildLabel(ThemeData theme, String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Text(
-        text,
-        style: theme.textTheme.labelLarge?.copyWith(
-          color: theme.colorScheme.onSurface,
-        ),
-      ),
-    );
-  }
-
-  void _handleLogin() {
-    if (_formKey.currentState?.validate() ?? false) {
-      unawaited(
-        ref
-            .read(authProvider.notifier)
-            .login(_emailController.text.trim(), _passwordController.text),
-      );
-    }
   }
 }

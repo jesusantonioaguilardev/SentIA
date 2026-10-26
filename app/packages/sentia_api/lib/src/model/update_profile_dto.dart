@@ -75,9 +75,9 @@ class UpdateProfileDto {
 
     @override
     int get hashCode =>
-        (displayName == null ? 0 : displayName.hashCode) +
+        displayName.hashCode +
         timezone.hashCode +
-        (emergencyContact == null ? 0 : emergencyContact.hashCode);
+        emergencyContact.hashCode;
 
   factory UpdateProfileDto.fromJson(Map<String, dynamic> json) => _$UpdateProfileDtoFromJson(json);
 

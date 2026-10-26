@@ -1,153 +1,79 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sentia2/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:sentia2/app/theme/tokens.dart';
+import 'package:sentia2/core/routing/routes.dart';
+import 'package:sentia2/features/auth/domain/auth_validators.dart';
+import 'package:sentia2/features/auth/presentation/auth_error_message.dart';
+import 'package:sentia2/features/auth/presentation/controllers/auth_form_controllers.dart';
+import 'package:sentia2/features/auth/presentation/widgets/auth_layout.dart';
+import 'package:sentia2/l10n/app_localizations.dart';
 
-class ForgotPasswordScreen extends ConsumerStatefulWidget {
+/// Pide el enlace de restablecimiento. El cambio de contraseña ocurre en la
+/// página web del enlace (backend), sin deep links en Etapa 1.
+class ForgotPasswordScreen extends HookConsumerWidget {
   const new({super.key});
 
   @override
-  ConsumerState<ForgotPasswordScreen> createState() =>
-      _ForgotPasswordScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final formKey = useMemoized(GlobalKey<FormState>.new);
+    final email = useTextEditingController();
+    final sent = useState(false);
+    final state = ref.watch(forgotPasswordFormProvider);
 
-class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  bool _emailSent = false;
+    Future<void> submit() async {
+      if (!formKey.currentState!.validate()) return;
+      sent.value = await ref
+          .read(forgotPasswordFormProvider.notifier)
+          .submit(email.text);
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return Scaffold(
-      backgroundColor: colorScheme.surface,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: _emailSent
-              ? _buildSuccessState(theme)
-              : _buildFormState(theme),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFormState(ThemeData theme) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20),
-          Text(
-            'Recuperar contraseña',
-            style: theme.textTheme.headlineLarge?.copyWith(
-              color: theme.colorScheme.onSurface,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Ingresa tu correo y te enviaremos instrucciones para restablecer '
-            'tu acceso.',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: 32),
-          Card(
-            color: theme.colorScheme.surfaceContainerLowest,
-            child: Padding(
-              padding: const EdgeInsets.all(24),
+    return AuthLayout(
+      title: sent.value ? l10n.forgotSentTitle : l10n.forgotTitle,
+      subtitle: sent.value ? l10n.forgotSentBody : l10n.forgotBody,
+      showBack: true,
+      child: sent.value
+          ? SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () => context.go(Routes.login),
+                child: Text(l10n.forgotBackToLogin),
+              ),
+            )
+          : Form(
+              key: formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    'Correo electrónico',
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: theme.colorScheme.onSurface,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
+                  FieldLabel(l10n.authEmailLabel),
                   TextFormField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                      hintText: 'tu@correo.com',
-                    ),
+                    controller: email,
                     keyboardType: TextInputType.emailAddress,
-                    validator: (v) => (v == null || !v.contains('@'))
-                        ? 'Por favor ingresa un correo válido'
-                        : null,
-                  ),
-                  const SizedBox(height: 32),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _handleSubmit,
-                      child: const Text('Enviar instrucciones'),
+                    autofillHints: const [AutofillHints.email],
+                    onFieldSubmitted: (_) => submit(),
+                    decoration: InputDecoration(
+                      hintText: l10n.authEmailHint,
+                      prefixIcon: const Icon(Icons.mail_outline),
                     ),
+                    validator: (v) => AuthValidators.isEmail(v ?? '')
+                        ? null
+                        : l10n.validationEmail,
+                  ),
+                  const SizedBox(height: Spacing.lg),
+                  if (state case AsyncError(:final error)) ...[
+                    FormError(authErrorMessage(error, l10n)),
+                    const SizedBox(height: Spacing.md),
+                  ],
+                  SubmitButton(
+                    label: l10n.forgotButton,
+                    loading: state.isLoading,
+                    onPressed: submit,
                   ),
                 ],
               ),
             ),
-          ),
-        ],
-      ),
     );
-  }
-
-  Widget _buildSuccessState(ThemeData theme) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          Icons.mark_email_read_outlined,
-          size: 80,
-          color: theme.colorScheme.primary,
-        ),
-        const SizedBox(height: 32),
-        Text(
-          '¡Correo enviado!',
-          style: theme.textTheme.headlineMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'Revisa tu bandeja de entrada y sigue los pasos para recuperar tu '
-          'acceso.',
-          textAlign: TextAlign.center,
-          style: theme.textTheme.bodyLarge?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
-        ),
-        const SizedBox(height: 40),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Volver al inicio'),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _handleSubmit() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      await ref
-          .read(authProvider.notifier)
-          .resetPassword(_emailController.text);
-      setState(() => _emailSent = true);
-    }
   }
 }

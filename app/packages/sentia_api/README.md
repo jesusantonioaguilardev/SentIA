@@ -78,6 +78,7 @@ Class | Method | HTTP request | Description
 [*ConsentsApi*](doc/ConsentsApi.md) | [**consentMine**](doc/ConsentsApi.md#consentmine) | **GET** /v1/me/consents | 
 [*ConsentsApi*](doc/ConsentsApi.md) | [**consentRecord**](doc/ConsentsApi.md#consentrecord) | **POST** /v1/consents | 
 [*HealthApi*](doc/HealthApi.md) | [**healthCheck**](doc/HealthApi.md#healthcheck) | **GET** /v1/health | 
+[*MeApi*](doc/MeApi.md) | [**meClearEmergencyContact**](doc/MeApi.md#meclearemergencycontact) | **DELETE** /v1/me/emergency-contact | 
 [*MeApi*](doc/MeApi.md) | [**meExport**](doc/MeApi.md#meexport) | **GET** /v1/me/export | 
 [*MeApi*](doc/MeApi.md) | [**meGet**](doc/MeApi.md#meget) | **GET** /v1/me | 
 [*MeApi*](doc/MeApi.md) | [**meRemove**](doc/MeApi.md#meremove) | **DELETE** /v1/me | 

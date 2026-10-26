@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_controller.dart';
+part of 'profile_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,50 +9,43 @@ part of 'auth_controller.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(Auth)
-final authProvider = AuthProvider._();
+@ProviderFor(ProfileController)
+final profileControllerProvider = ProfileControllerProvider._();
 
-final class AuthProvider extends $NotifierProvider<Auth, AuthState> {
-  AuthProvider._()
+final class ProfileControllerProvider
+    extends $AsyncNotifierProvider<ProfileController, Profile> {
+  ProfileControllerProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'authProvider',
+        name: r'profileControllerProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$authHash();
+  String debugGetCreateSourceHash() => _$profileControllerHash();
 
   @$internal
   @override
-  Auth create() => Auth();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<AuthState>(value),
-    );
-  }
+  ProfileController create() => ProfileController();
 }
 
-String _$authHash() => r'14f79cbe76f7f2496a392c52a5fe77cab486b3be';
+String _$profileControllerHash() => r'a0603541dadf8208dcd9d846ae14ac647c50123b';
 
-abstract class _$Auth extends $Notifier<AuthState> {
-  AuthState build();
+abstract class _$ProfileController extends $AsyncNotifier<Profile> {
+  FutureOr<Profile> build();
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
-    final ref = this.ref as $Ref<AuthState, AuthState>;
+    final ref = this.ref as $Ref<AsyncValue<Profile>, Profile>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AuthState, AuthState>,
-              AuthState,
+              AnyNotifier<AsyncValue<Profile>, Profile>,
+              AsyncValue<Profile>,
               Object?,
               Object?
             >;

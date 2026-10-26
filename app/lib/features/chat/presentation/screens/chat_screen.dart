@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sentia2/core/routing/routes.dart';
 import 'package:sentia2/features/chat/domain/entities/chat_message.dart';
 import 'package:sentia2/features/chat/presentation/controllers/chat_controller.dart';
+import 'package:sentia2/shared/widgets/crisis_button.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
   const new({super.key});
@@ -82,6 +83,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: false,
+        actions: const [CrisisButton()],
       ),
       body: Column(
         children: [

@@ -2,21 +2,50 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sentia2/core/config/app_config.dart';
 import 'package:sentia2/core/logging/app_logger.dart';
+import 'package:sentia2/core/network/auth_interceptor.dart';
+import 'package:sentia2/core/security/token_storage.dart';
 import 'package:sentia_api/sentia_api.dart';
+
+BaseOptions _baseOptions(AppConfig config) => BaseOptions(
+  baseUrl: config.apiBaseUrl,
+  connectTimeout: const Duration(seconds: 10),
+  receiveTimeout: const Duration(seconds: 30),
+);
 
 /// Cliente HTTP único de la app. La app solo habla con el backend de SentIA
 /// (docs/03): nunca con proveedores de IA directamente.
 final dioProvider = Provider<Dio>((ref) {
   final config = ref.watch(appConfigProvider);
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: config.apiBaseUrl,
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 30),
+  final storage = ref.watch(tokenStorageProvider);
+  final refreshApi = ref.watch(_refreshApiProvider);
+  final dio = Dio(_baseOptions(config));
+  dio.interceptors.addAll([
+    AuthInterceptor(
+      storage: storage,
+      dio: dio,
+      refresh: (refreshToken) async {
+        final response = await refreshApi.authRefresh(
+          refreshDto: RefreshDto(refreshToken: refreshToken),
+        );
+        final pair = response.data!;
+        return SessionTokens(
+          accessToken: pair.accessToken,
+          refreshToken: pair.refreshToken,
+        );
+      },
     ),
-  )..interceptors.add(const _SafeLogInterceptor());
+    const _SafeLogInterceptor(),
+  ]);
   ref.onDispose(dio.close);
   return dio;
+});
+
+/// Cliente sin interceptor de auth, solo para refrescar (evita bucles).
+final _refreshApiProvider = Provider<AuthApi>((ref) {
+  final dio = Dio(_baseOptions(ref.watch(appConfigProvider)))
+    ..interceptors.add(const _SafeLogInterceptor());
+  ref.onDispose(dio.close);
+  return AuthApi(dio);
 });
 
 /// Cliente generado desde `backend/openapi.yaml`.

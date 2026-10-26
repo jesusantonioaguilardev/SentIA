@@ -50,10 +50,17 @@ jobs:
       - run: npm test
       - run: npm run test:e2e
       - name: Migraciones, seed y pruebas contra PostgreSQL
+        shell: bash
         run: |
-          npm run db:migrate
-          npm run build
-          npm run test:db
+          set -o pipefail
+          # Los logs de Actions requieren sesión; los errores se publican como anotaciones.
+          step() { "$@" 2>&1 | tee /tmp/step.log || { echo "::error title=$*::$(tail -n 15 /tmp/step.log | tr '
+' ' ' | cut -c1-900)"; exit 1; }; }
+          step npm run db:migrate
+          # Las migraciones deben reproducir exactamente schema.prisma (sin drift).
+          step npx prisma migrate diff --from-config-datasource --to-schema prisma/schema.prisma --exit-code
+          step npm run build
+          npm run test:db -- --reporters=default --reporters=github-actions
       - name: openapi.yaml al día con el código
         run: |
           npm run openapi:export

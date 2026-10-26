@@ -81,7 +81,6 @@ Las pantallas heredadas se reescriben en su etapa; no mezcles esa migración con
 | URLs de staging/prod (`.invalid`) | `core/config/app_config.dart` | al decidir hosting |
 | Firma de release con llaves de debug | `app/android/app/build.gradle.kts` | antes de beta (Etapa 2) |
 | `google_fonts` fijado en 8.x (9.x requiere `material_ui`) | `app/pubspec.yaml` | al migrar a `material_ui` |
-| Carpeta sin uso | `android_old/` (raíz) | eliminar tras confirmar |
 
 ## Reglas no negociables (detalle en AGENTS.md y docs/11)
 - **Zonas protegidas — requieren confirmación explícita del usuario:** safety (código, léxico, textos de crisis), prompts, textos legales/consentimiento, migraciones de Prisma y cifrado, auth/guards/tokens.

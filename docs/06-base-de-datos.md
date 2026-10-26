@@ -4,6 +4,7 @@ Convenciones: tablas `snake_case` plural, PK `id uuid` (v7 preferente), `created
 Separación lógica (schemas): `identity` (cuenta), `clinical` (contenido sensible), `ops` (auditoría, notificaciones), `kb` (conocimiento). Así se separan datos administrativos de conversacionales.
 
 ## identity
+> Implementado en Etapa 1: ver `backend/prisma/schema.prisma` (fuente de verdad). Diferencias con este bosquejo: `subject_id` seudónimo en users, `user_consents` y `audit_log` (sobreviven al borrado, ADR-0007); `tokens_valid_after`; `one_time_tokens` (restablecer/borrar); sin `pending_deletion` (borrado inmediato); `safety_resources.clinical_approval`.
 ```
 users(id, email uniq, password_hash, role enum[user,specialist,admin], status enum[active,suspended,pending_deletion],
       birth_year, country_code, locale, mfa_secret_enc null, deletion_requested_at null, created_at, updated_at)

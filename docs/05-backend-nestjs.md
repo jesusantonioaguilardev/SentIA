@@ -52,10 +52,11 @@ Cada módulo: `*.module.ts`, `*.controller.ts`, `*.service.ts`, `dto/`, `*.spec.
 
 ## Endpoints principales (MVP)
 ```
-POST   /v1/auth/register | login | refresh | logout | password/forgot | password/reset
-GET    /v1/me            PATCH /v1/me           DELETE /v1/me   (borrado de cuenta)
-GET    /v1/me/export                                            (ARCO: acceso/portabilidad)
-GET    /v1/consents/current        POST /v1/consents             (aceptar versión)
+POST   /v1/auth/register | login | refresh | logout | logout-all | password/forgot | password/reset   ✔ Etapa 1
+GET    /v1/me   PATCH /v1/me   DELETE /v1/me (con contraseña)   DELETE /v1/me/emergency-contact          ✔
+GET    /v1/me/export                                            (ARCO)                                ✔
+GET    /v1/consents/current   GET /v1/me/consents   POST /v1/consents (acepta o retira una versión)   ✔
+POST   /v1/account-deletion-requests | /confirm   + páginas web /eliminar-cuenta, /restablecer-contrasena ✔
 GET    /v1/chat/sessions           POST /v1/chat/sessions
 GET    /v1/chat/sessions/:id/messages
 POST   /v1/chat/sessions/:id/messages        (respuesta en streaming SSE)
@@ -78,7 +79,8 @@ GET    /v1/health
 
 ## Borrado de cuenta
 Alcance propuesto (qué se borra y qué se conserva seudonimizado): [ADR-0007](adr/0007-borrado-de-cuenta.md).
-- `DELETE /v1/me` → marca `deletion_requested_at`, revoca sesiones, job elimina/anonimiza datos en ≤ 30 días [VALIDAR-LEGAL plazo], conserva solo lo legalmente requerido (p. ej. evidencia de consentimiento) y lo documenta.
+- Implementado (Etapa 1): `DELETE /v1/me` borra de inmediato cuenta, perfil y tokens (cascada); consentimientos y `audit_log` quedan ligados solo a `subject_id`. Plazo de retención de lo conservado [VALIDAR-LEGAL].
+- Access tokens llevan `iatMs`; logout-all y cambio de contraseña los invalidan vía `users.tokens_valid_after`.
 
 ## Observabilidad
 - `traceId` por petición; métricas (latencia, errores, costo IA por usuario); alertas de seguridad.

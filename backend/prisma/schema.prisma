@@ -47,6 +47,9 @@ model User {
   countryCode       String     @default("MX") @map("country_code") @db.Char(2)
   locale            String     @default("es-MX")
   passwordChangedAt DateTime   @default(now()) @map("password_changed_at") @db.Timestamptz
+  /// Tokens de acceso emitidos antes de este instante se rechazan (logout-all,
+  /// cambio de contraseña).
+  tokensValidAfter  DateTime   @default(now()) @map("tokens_valid_after") @db.Timestamptz
   createdAt         DateTime   @default(now()) @map("created_at") @db.Timestamptz
   updatedAt         DateTime   @updatedAt @map("updated_at") @db.Timestamptz
 

@@ -7,10 +7,11 @@ import {
   Logger,
 } from '@nestjs/common';
 import type { Request, Response } from 'express';
+import { AppException } from '../errors/app.exception';
 
 /**
  * Formato de error único de la API (docs/05):
- * `{ "error": { "code", "message", "traceId" } }`.
+ * `{ "error": { "code", "message", "traceId", "fields"? } }`.
  * Nunca devuelve stack traces ni detalles internos al cliente.
  */
 @Catch()
@@ -31,7 +32,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
       this.logger.error(exception);
     }
 
-    const code = (HttpStatus[status] as string | undefined) ?? 'ERROR';
+    const code =
+      exception instanceof AppException
+        ? exception.code
+        : ((HttpStatus[status] as string | undefined) ?? 'ERROR');
 
     response.status(status).json({
       error: {
@@ -41,6 +45,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
             ? exception.message
             : 'Error interno',
         traceId: request.id ?? null,
+        ...(exception instanceof AppException && exception.fields
+          ? { fields: exception.fields }
+          : {}),
       },
     });
   }

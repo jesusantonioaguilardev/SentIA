@@ -1,5 +1,12 @@
 import { randomUUID } from 'node:crypto';
 import { Module } from '@nestjs/common';
+import { APP_GUARD, APP_PIPE } from '@nestjs/core';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { JwtAuthGuard } from './common/auth/jwt-auth.guard';
+import { ZodValidationPipe } from './common/validation/zod-validation.pipe';
+import { ConsentModule } from './modules/consent/consent.module';
+import { SafetyModule } from './modules/safety/safety.module';
+import { WebModule } from './modules/web/web.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { CryptoModule } from './common/crypto/crypto.module';
@@ -40,6 +47,12 @@ import { UsersModule } from './modules/users/users.module';
         },
       }),
     }),
+    // Límite general por IP; las rutas sensibles lo endurecen con @Throttle.
+    // En tests se desactiva para no volver frágiles los e2e.
+    ThrottlerModule.forRoot({
+      throttlers: [{ ttl: 60_000, limit: 120 }],
+      skipIf: () => process.env.NODE_ENV === 'test',
+    }),
     PrismaModule,
     CryptoModule,
     MailModule,
@@ -47,6 +60,15 @@ import { UsersModule } from './modules/users/users.module';
     HealthModule,
     AuthModule,
     UsersModule,
+    ConsentModule,
+    SafetyModule,
+    WebModule,
+  ],
+  providers: [
+    { provide: APP_GUARD, useClass: ThrottlerGuard },
+    // Deny-by-default: toda ruta exige sesión salvo @Public() (docs/03).
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
+    { provide: APP_PIPE, useClass: ZodValidationPipe },
   ],
 })
 export class AppModule {}

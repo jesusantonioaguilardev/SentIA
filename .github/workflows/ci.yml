@@ -47,7 +47,8 @@ jobs:
       - run: npm ci
       - run: npm run lint:check
       - run: npm run typecheck
-      - run: npm test
+      - name: Tests unitarios (auth con umbral de cobertura ≥ 80 %)
+        run: npm test -- --coverage
       - run: npm run test:e2e
       - name: Migraciones, seed y pruebas contra PostgreSQL
         shell: bash

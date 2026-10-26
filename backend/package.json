@@ -25,12 +25,12 @@
     "openapi:export": "nest build && node dist/openapi-export",
     "db:up": "docker compose up -d --wait",
     "db:down": "docker compose down",
-    "client:dart": "openapi-generator-cli generate --generator-key dart && cd ../app/packages/sentia_api && fvm dart pub get && fvm dart run build_runner build --delete-conflicting-outputs",
+    "client:dart": "openapi-generator-cli generate --generator-key dart && node tools/postprocess-dart-client.cjs && cd ../app/packages/sentia_api && fvm dart pub get && fvm dart run build_runner build --delete-conflicting-outputs",
     "contract": "npm run openapi:export && npm run client:dart",
     "db:migrate": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
     "db:seed": "nest build && node dist/database/seed",
-    "test:db": "jest --config ./test/jest-db.json --runInBand"
+    "test:db": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./test/jest-db.json --runInBand"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -99,7 +99,11 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s",
       "!generated/**",
-      "!main.ts"
+      "!main.ts",
+      "!**/*.module.ts",
+      "!**/dto/**",
+      "!database/**",
+      "!openapi-export.ts"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
@@ -108,7 +112,17 @@
     },
     "setupFiles": [
       "<rootDir>/../test/setup-env.ts"
-    ]
+    ],
+    "coverageThreshold": {
+      "./src/modules/auth/": {
+        "lines": 80,
+        "statements": 80
+      },
+      "./src/common/auth/jwt-auth.guard.ts": {
+        "lines": 80,
+        "statements": 80
+      }
+    }
   },
   "engines": {
     "node": ">=22"

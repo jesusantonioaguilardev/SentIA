@@ -19,6 +19,286 @@ paths:
                 $ref: '#/components/schemas/HealthDto'
       tags:
         - health
+  /v1/auth/register:
+    post:
+      operationId: authRegister
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPairDto'
+      tags:
+        - auth
+  /v1/auth/login:
+    post:
+      operationId: authLogin
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPairDto'
+      tags:
+        - auth
+  /v1/auth/refresh:
+    post:
+      operationId: authRefresh
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPairDto'
+      tags:
+        - auth
+  /v1/auth/logout:
+    post:
+      operationId: authLogout
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshDto'
+      responses:
+        '204':
+          description: ''
+      tags:
+        - auth
+  /v1/auth/logout-all:
+    post:
+      operationId: authLogoutAll
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - auth
+  /v1/auth/password/forgot:
+    post:
+      operationId: authForgotPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordDto'
+      responses:
+        '204':
+          description: Misma respuesta (y mismo tiempo) exista o no la cuenta.
+      tags:
+        - auth
+  /v1/auth/password/reset:
+    post:
+      operationId: authResetPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordDto'
+      responses:
+        '204':
+          description: ''
+      tags:
+        - auth
+  /v1/me:
+    get:
+      operationId: meGet
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileDto'
+      security:
+        - bearer: []
+      tags:
+        - me
+    patch:
+      operationId: meUpdate
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileDto'
+      security:
+        - bearer: []
+      tags:
+        - me
+    delete:
+      operationId: meRemove
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteAccountDto'
+      responses:
+        '204':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - me
+  /v1/me/export:
+    get:
+      operationId: meExport
+      parameters: []
+      responses:
+        '200':
+          description: JSON con todos los datos guardados de la persona.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      security:
+        - bearer: []
+      tags:
+        - me
+  /v1/account-deletion-requests:
+    post:
+      operationId: accountDeletionRequest
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountDeletionRequestDto'
+      responses:
+        '204':
+          description: Misma respuesta exista o no la cuenta.
+      tags:
+        - account-deletion
+  /v1/account-deletion-requests/confirm:
+    post:
+      operationId: accountDeletionConfirm
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmDeletionDto'
+      responses:
+        '204':
+          description: ''
+      tags:
+        - account-deletion
+  /v1/consents/current:
+    get:
+      operationId: consentCurrent
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConsentDocumentDto'
+      tags:
+        - consents
+  /v1/me/consents:
+    get:
+      operationId: consentMine
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConsentStatusDto'
+      security:
+        - bearer: []
+      tags:
+        - consents
+  /v1/consents:
+    post:
+      operationId: consentRecord
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecordConsentDto'
+      responses:
+        '204':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - consents
+  /v1/safety/resources:
+    get:
+      operationId: safetyResources
+      parameters:
+        - name: country
+          required: false
+          in: query
+          schema:
+            example: MX
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SafetyResourceDto'
+      tags:
+        - safety
 info:
   title: SentIA API
   description: API del backend de SentIA. Ver docs/05-backend-nestjs.md.
@@ -60,3 +340,250 @@ components:
         - database
         - environment
         - version
+    RegisterDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: ana@correo.mx
+        password:
+          type: string
+          minLength: 12
+          maxLength: 128
+        birthYear:
+          type: number
+          example: 1995
+        ageConfirmed:
+          type: boolean
+          description: El usuario declara ser mayor de 18 años.
+      required:
+        - email
+        - password
+        - birthYear
+        - ageConfirmed
+    TokenPairDto:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: number
+          description: Segundos de vida del access token.
+      required:
+        - accessToken
+        - refreshToken
+        - expiresIn
+    LoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: ana@correo.mx
+        password:
+          type: string
+      required:
+        - email
+        - password
+    RefreshDto:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+      required:
+        - refreshToken
+    ForgotPasswordDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: ana@correo.mx
+      required:
+        - email
+    ResetPasswordDto:
+      type: object
+      properties:
+        token:
+          type: string
+        password:
+          type: string
+          minLength: 12
+          maxLength: 128
+      required:
+        - token
+        - password
+    EmergencyContactDto:
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+          example: +52 55 1234 5678
+      required:
+        - name
+        - phone
+    ProfileDto:
+      type: object
+      properties:
+        email:
+          type: string
+        birthYear:
+          type: number
+        displayName:
+          type: string
+          nullable: true
+        timezone:
+          type: string
+          example: America/Mexico_City
+        emergencyContact:
+          nullable: true
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/EmergencyContactDto'
+        createdAt:
+          type: string
+      required:
+        - email
+        - birthYear
+        - timezone
+        - createdAt
+    UpdateProfileDto:
+      type: object
+      properties:
+        displayName:
+          type: string
+          nullable: true
+        timezone:
+          type: string
+        emergencyContact:
+          nullable: true
+          description: Opcional. La persona debe estar informada de que la registras (docs/02).
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/EmergencyContactDto'
+    DeleteAccountDto:
+      type: object
+      properties:
+        password:
+          type: string
+          description: Confirmación con la contraseña actual.
+      required:
+        - password
+    AccountDeletionRequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+        - email
+    ConfirmDeletionDto:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+        - token
+    ConsentDocumentDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - privacy_notice
+            - terms
+            - sensitive_data
+            - ai_disclaimer
+            - research
+        version:
+          type: string
+          example: 0.1-borrador
+        title:
+          type: string
+        content:
+          type: string
+          description: Markdown.
+        required:
+          type: boolean
+          description: Debe aceptarse para usar la app.
+        isDraft:
+          type: boolean
+          description: 'Texto sin revisión legal: la app debe mostrarlo como borrador.'
+        publishedAt:
+          type: string
+      required:
+        - id
+        - type
+        - version
+        - title
+        - content
+        - required
+        - isDraft
+        - publishedAt
+    ConsentStatusDto:
+      type: object
+      properties:
+        document:
+          $ref: '#/components/schemas/ConsentDocumentDto'
+        granted:
+          type: boolean
+          description: Decisión vigente del usuario sobre esta versión.
+        decidedAt:
+          type: string
+          nullable: true
+      required:
+        - document
+        - granted
+    RecordConsentDto:
+      type: object
+      properties:
+        documentId:
+          type: string
+        granted:
+          type: boolean
+          description: true = acepta, false = revoca.
+        appVersion:
+          type: string
+          example: 0.1.0+1
+      required:
+        - documentId
+        - granted
+    SafetyResourceDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+          description: Número marcable, sin espacios.
+        sms:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        hours:
+          type: string
+          nullable: true
+        verifiedSourceUrl:
+          type: string
+          description: Página oficial donde se verificó.
+        verifiedAt:
+          type: string
+        clinicalApproval:
+          type: string
+          enum:
+            - pending
+            - approved
+      required:
+        - name
+        - verifiedSourceUrl
+        - verifiedAt
+        - clinicalApproval

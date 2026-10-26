@@ -50,7 +50,6 @@ class _$HealthDtoCWProxyImpl implements _$HealthDtoCWProxy {
   HealthDto version(String version) => this(version: version);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HealthDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -94,33 +93,36 @@ extension $HealthDtoCopyWith on HealthDto {
 // JsonSerializableGenerator
 // **************************************************************************
 
-HealthDto _$HealthDtoFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'HealthDto',
-      json,
-      ($checkedConvert) {
-        $checkKeys(
-          json,
-          requiredKeys: const ['status', 'database', 'environment', 'version'],
-        );
-        final val = HealthDto(
-          status: $checkedConvert(
-              'status', (v) => $enumDecode(_$HealthDtoStatusEnumEnumMap, v)),
-          database: $checkedConvert('database',
-              (v) => $enumDecode(_$HealthDtoDatabaseEnumEnumMap, v)),
-          environment: $checkedConvert('environment',
-              (v) => $enumDecode(_$HealthDtoEnvironmentEnumEnumMap, v)),
-          version: $checkedConvert('version', (v) => v as String),
-        );
-        return val;
-      },
-    );
+HealthDto _$HealthDtoFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('HealthDto', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const ['status', 'database', 'environment', 'version'],
+      );
+      final val = HealthDto(
+        status: $checkedConvert(
+          'status',
+          (v) => $enumDecode(_$HealthDtoStatusEnumEnumMap, v),
+        ),
+        database: $checkedConvert(
+          'database',
+          (v) => $enumDecode(_$HealthDtoDatabaseEnumEnumMap, v),
+        ),
+        environment: $checkedConvert(
+          'environment',
+          (v) => $enumDecode(_$HealthDtoEnvironmentEnumEnumMap, v),
+        ),
+        version: $checkedConvert('version', (v) => v as String),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$HealthDtoToJson(HealthDto instance) => <String, dynamic>{
-      'status': _$HealthDtoStatusEnumEnumMap[instance.status]!,
-      'database': _$HealthDtoDatabaseEnumEnumMap[instance.database]!,
-      'environment': _$HealthDtoEnvironmentEnumEnumMap[instance.environment]!,
-      'version': instance.version,
-    };
+  'status': _$HealthDtoStatusEnumEnumMap[instance.status]!,
+  'database': _$HealthDtoDatabaseEnumEnumMap[instance.database]!,
+  'environment': _$HealthDtoEnvironmentEnumEnumMap[instance.environment]!,
+  'version': instance.version,
+};
 
 const _$HealthDtoStatusEnumEnumMap = {
   HealthDtoStatusEnum.ok: 'ok',

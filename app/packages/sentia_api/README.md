@@ -48,13 +48,13 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import 'package:sentia_api/sentia_api.dart';
 
 
-final api = SentiaApi().getHealthApi();
+final api = SentiaApi().getAccountDeletionApi();
+final ConfirmDeletionDto confirmDeletionDto = ; // ConfirmDeletionDto | 
 
 try {
-    final response = await api.healthCheck();
-    print(response);
+    api.accountDeletionConfirm(confirmDeletionDto);
 } on DioException catch (e) {
-    print("Exception when calling HealthApi->healthCheck: $e\n");
+    print("Exception when calling AccountDeletionApi->accountDeletionConfirm: $e\n");
 }
 
 ```
@@ -65,12 +65,45 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+[*AccountDeletionApi*](doc/AccountDeletionApi.md) | [**accountDeletionConfirm**](doc/AccountDeletionApi.md#accountdeletionconfirm) | **POST** /v1/account-deletion-requests/confirm | 
+[*AccountDeletionApi*](doc/AccountDeletionApi.md) | [**accountDeletionRequest**](doc/AccountDeletionApi.md#accountdeletionrequest) | **POST** /v1/account-deletion-requests | 
+[*AuthApi*](doc/AuthApi.md) | [**authForgotPassword**](doc/AuthApi.md#authforgotpassword) | **POST** /v1/auth/password/forgot | 
+[*AuthApi*](doc/AuthApi.md) | [**authLogin**](doc/AuthApi.md#authlogin) | **POST** /v1/auth/login | 
+[*AuthApi*](doc/AuthApi.md) | [**authLogout**](doc/AuthApi.md#authlogout) | **POST** /v1/auth/logout | 
+[*AuthApi*](doc/AuthApi.md) | [**authLogoutAll**](doc/AuthApi.md#authlogoutall) | **POST** /v1/auth/logout-all | 
+[*AuthApi*](doc/AuthApi.md) | [**authRefresh**](doc/AuthApi.md#authrefresh) | **POST** /v1/auth/refresh | 
+[*AuthApi*](doc/AuthApi.md) | [**authRegister**](doc/AuthApi.md#authregister) | **POST** /v1/auth/register | 
+[*AuthApi*](doc/AuthApi.md) | [**authResetPassword**](doc/AuthApi.md#authresetpassword) | **POST** /v1/auth/password/reset | 
+[*ConsentsApi*](doc/ConsentsApi.md) | [**consentCurrent**](doc/ConsentsApi.md#consentcurrent) | **GET** /v1/consents/current | 
+[*ConsentsApi*](doc/ConsentsApi.md) | [**consentMine**](doc/ConsentsApi.md#consentmine) | **GET** /v1/me/consents | 
+[*ConsentsApi*](doc/ConsentsApi.md) | [**consentRecord**](doc/ConsentsApi.md#consentrecord) | **POST** /v1/consents | 
 [*HealthApi*](doc/HealthApi.md) | [**healthCheck**](doc/HealthApi.md#healthcheck) | **GET** /v1/health | 
+[*MeApi*](doc/MeApi.md) | [**meExport**](doc/MeApi.md#meexport) | **GET** /v1/me/export | 
+[*MeApi*](doc/MeApi.md) | [**meGet**](doc/MeApi.md#meget) | **GET** /v1/me | 
+[*MeApi*](doc/MeApi.md) | [**meRemove**](doc/MeApi.md#meremove) | **DELETE** /v1/me | 
+[*MeApi*](doc/MeApi.md) | [**meUpdate**](doc/MeApi.md#meupdate) | **PATCH** /v1/me | 
+[*SafetyApi*](doc/SafetyApi.md) | [**safetyResources**](doc/SafetyApi.md#safetyresources) | **GET** /v1/safety/resources | 
 
 
 ## Documentation For Models
 
+ - [AccountDeletionRequestDto](doc/AccountDeletionRequestDto.md)
+ - [ConfirmDeletionDto](doc/ConfirmDeletionDto.md)
+ - [ConsentDocumentDto](doc/ConsentDocumentDto.md)
+ - [ConsentStatusDto](doc/ConsentStatusDto.md)
+ - [DeleteAccountDto](doc/DeleteAccountDto.md)
+ - [EmergencyContactDto](doc/EmergencyContactDto.md)
+ - [ForgotPasswordDto](doc/ForgotPasswordDto.md)
  - [HealthDto](doc/HealthDto.md)
+ - [LoginDto](doc/LoginDto.md)
+ - [ProfileDto](doc/ProfileDto.md)
+ - [RecordConsentDto](doc/RecordConsentDto.md)
+ - [RefreshDto](doc/RefreshDto.md)
+ - [RegisterDto](doc/RegisterDto.md)
+ - [ResetPasswordDto](doc/ResetPasswordDto.md)
+ - [SafetyResourceDto](doc/SafetyResourceDto.md)
+ - [TokenPairDto](doc/TokenPairDto.md)
+ - [UpdateProfileDto](doc/UpdateProfileDto.md)
 
 
 ## Documentation For Authorization

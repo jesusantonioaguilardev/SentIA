@@ -1,5 +1,6 @@
 # Actualizaciones de dependencias (docs/10). Toda dependencia nueva o salto
 # de versión mayor se revisa antes de aceptar (docs/11).
+# Menores y parches llegan agrupados en un PR por ecosistema; los mayores, uno por uno.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -7,12 +8,36 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    groups:
+      backend-menores:
+        update-types: [minor, patch]
+    ignore:
+      # Nest 12 (y @nestjs/config 12, @nestjs/cli 12) es solo ESM: requiere migrar
+      # todo el backend a la vez. Se hará como tarea propia, no por Dependabot.
+      - dependency-name: "@nestjs/*"
+        update-types: ["version-update:semver-major"]
+      # Prisma: el tag latest de npm ha apuntado a RCs; las mayores se migran a mano.
+      - dependency-name: "prisma"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@prisma/*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: pub
     directory: /app
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    groups:
+      app-menores:
+        update-types: [minor, patch]
+    ignore:
+      # 9.x depende de material_ui (Material fuera del SDK); incompatible con
+      # flutter/material en Flutter 3.47. Ver app/pubspec.yaml.
+      - dependency-name: google_fonts
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]

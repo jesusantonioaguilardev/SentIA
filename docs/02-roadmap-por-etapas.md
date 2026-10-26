@@ -27,7 +27,7 @@ Backend (NestJS):
 
 Transversal:
 - [x] Repositorio git inicializado (prerrequisito de CI).
-- [ ] CI: analyze + test + build en cada PR (GitHub Actions). — workflow escrito (`.github/workflows/ci.yml`); **falta subir a GitHub y verlo en verde**.
+- [x] CI: analyze + test + build en cada PR (GitHub Actions) — en verde desde 2026-10-25 (github.com/jesusantonioaguilardev/SentIA).
 - [x] `AGENTS.md`, `CLAUDE.md`, `docs/`, ADRs 0001–0005.
 
 **Criterio de salida:** app compila en los 3 flavors, muestra pantalla "Hola" responsive en teléfono y tablet, llama `GET /health` del backend; CI en verde.

@@ -2,6 +2,15 @@
 
 Este documento registra los cambios, decisiones arquitectónicas y comandos utilizados en el proyecto para mantener un control total y facilitar el aprendizaje.
 
+## 2026-10-25 - Repo en GitHub y CI en verde
+
+- Remoto `origin` = github.com/jesusantonioaguilardev/SentIA. Su scaffold anterior (3 commits de agosto) se integró con merge `-s ours`: se conserva el historial, se descarta el contenido. Eliminado `android_old/`.
+- CI falló la primera vez y se corrigió: e2e dependía del `.env` local; un `.g.dart` desactualizado; falso positivo de gitleaks en el README de plantilla de NestJS (`.gitleaksignore`).
+- Dependabot: ignora mayores de `@nestjs/*`, Prisma y `google_fonts`; agrupa menores y parches.
+- Decisiones: MVP B2C (ADR-0006); alcance del borrado de cuenta propuesto (ADR-0007, falta validación legal).
+
+---
+
 ## 2026-10-10 - Etapa 0: fundaciones
 
 ### Decisiones
@@ -29,7 +38,7 @@ NestJS 11, config validada con zod, helmet, CORS cerrado, prefijo `/v1`, pino co
 - Flutter 3.47 exige Gradle ≥ 8.14 → Gradle 9.3.1, AGP 9.1.0, Kotlin 2.4.0 (versiones del template), `resValues` habilitado.
 
 ### Pendiente para cerrar Etapa 0
-- Subir a GitHub y ver CI en verde. Flavors de iOS (requiere Mac). Probar `/v1/health` con BD real (Docker Desktop).
+- Flavors de iOS (requiere Mac). Probar `/v1/health` con BD real (Docker Desktop).
 
 ---
 

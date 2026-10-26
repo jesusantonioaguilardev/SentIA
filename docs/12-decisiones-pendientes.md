@@ -7,10 +7,11 @@ Ningún agente debe resolver estos puntos por su cuenta. Al decidir uno: muével
 - [x] Modelo de negocio del MVP: B2C → [ADR-0006](adr/0006-mvp-b2c.md). Monetización: [PENDIENTE].
 - [ ] Alcance exacto del rol especialista y mecanismo de vinculación.
 - [ ] Rol familiar (lo menciona una propuesta; no está en el Master Context).
-- [ ] Escala del mood tracker (1–5 vs 0–10) y lista de emociones.
+- [x] Emociones del registro de ánimo (MVP): Feliz, Tranquilo, Neutral, Triste, Ansioso, Enojado. 2026-10-25.
+- [ ] Escala numérica del mood tracker (1–5 vs 0–10), si se agrega además de la emoción.
 - [x] Identidad visual: "Serena & Calma" → [ADR-0008](adr/0008-identidad-visual.md).
-- [ ] Avatar del asistente: foto realista (como en los diseños) vs ilustración; ver [docs/design §Revisión 1](design/README.md).
-- [ ] Inicio de sesión con Google (aparece en el diseño del login).
+- [x] Avatar del asistente: logo/ilustración abstracta + rótulo "Asistente de IA" (no foto realista). 2026-10-25.
+- [x] Inicio de sesión con Google: fuera de Etapa 1 (solo correo y contraseña). Se puede reconsiderar después. 2026-10-25.
 - [ ] Portal web: Flutter Web vs Next.js.
 
 ## Técnica

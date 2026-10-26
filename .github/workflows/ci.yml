@@ -45,7 +45,14 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
-      - run: npm run lint:check
+      - name: Lint
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run lint:check 2>&1 | tee /tmp/lint.log || {
+            echo "::error title=lint::$(tail -n 20 /tmp/lint.log | tr '\n' ' ' | cut -c1-900)"
+            exit 1
+          }
       - run: npm run typecheck
       - name: Tests unitarios (auth con umbral de cobertura ≥ 80 %)
         run: npm test -- --coverage

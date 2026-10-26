@@ -20,9 +20,23 @@ jobs:
     defaults:
       run:
         working-directory: backend
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: ci
+          POSTGRES_PASSWORD: ci
+          POSTGRES_DB: ci
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U ci -d ci" --health-interval 5s
+          --health-timeout 3s --health-retries 10
     env:
-      # Solo para validar la config y exportar el contrato; ningún paso conecta a la BD.
+      # Base de datos efímera del job y secretos falsos, solo para CI.
       DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+      JWT_ACCESS_SECRET: ci-only-jwt-secret-not-for-production-use
+      IP_HASH_SALT: ci-only-ip-hash-salt
+      FIELD_ENCRYPTION_KEY: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,6 +49,11 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run test:e2e
+      - name: Migraciones, seed y pruebas contra PostgreSQL
+        run: |
+          npm run db:migrate
+          npm run build
+          npm run test:db
       - name: openapi.yaml al día con el código
         run: |
           npm run openapi:export

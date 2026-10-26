@@ -1,6 +1,6 @@
-# Base de datos local para desarrollo. Credenciales solo de desarrollo.
-# Imagen con pgvector desde ya para no migrar de imagen en Etapa 5 (RAG, docs/06).
+# Servicios locales de desarrollo. Credenciales solo de desarrollo.
 services:
+  # Imagen con pgvector desde ya para no migrar de imagen en Etapa 5 (RAG, docs/06).
   db:
     image: pgvector/pgvector:pg17
     restart: unless-stopped
@@ -17,6 +17,15 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
+
+  # Captura los correos de desarrollo (recuperación de contraseña, borrado).
+  # Nada sale a internet. Bandeja: http://localhost:8025
+  mail:
+    image: axllent/mailpit:v1.32
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
 
 volumes:
   sentia-db:

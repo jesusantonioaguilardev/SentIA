@@ -1,6 +1,7 @@
 // Esquema de SentIA. Ver docs/06-base-de-datos.md.
-// Etapa 0: sin modelos. Las tablas (identity, clinical, ops) llegan en Etapa 1;
-// las migraciones son zona protegida (docs/11) y requieren confirmación humana.
+// Migraciones = zona protegida (docs/11): nunca editar una migración aplicada.
+// Etapa 1: identidad, consentimiento, auditoría y recursos de ayuda.
+// El contenido clínico (schema `clinical`) llega en Etapa 2.
 
 generator client {
   provider     = "prisma-client"
@@ -10,4 +11,243 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  schemas  = ["identity", "ops"]
+}
+
+// ───────────────────────────── identity ─────────────────────────────
+
+enum UserRole {
+  user
+  specialist
+  admin
+
+  @@schema("identity")
+}
+
+enum UserStatus {
+  active
+  suspended
+
+  @@schema("identity")
+}
+
+/// Cuenta. Al borrarla (ADR-0007) desaparece esta fila y todo lo que cuelga de
+/// ella; solo sobreviven consentimientos y auditoría ligados a `subjectId`.
+model User {
+  id                String     @id @default(uuid(7)) @db.Uuid
+  /// Seudónimo estable: consentimientos y auditoría lo usan en vez del email.
+  subjectId         String     @unique @default(uuid(7)) @map("subject_id") @db.Uuid
+  /// Siempre en minúsculas (se normaliza antes de guardar).
+  email             String     @unique
+  passwordHash      String     @map("password_hash")
+  role              UserRole   @default(user)
+  status            UserStatus @default(active)
+  /// Edad autodeclarada (docs/12): solo mayores de 18 en el MVP.
+  birthYear         Int        @map("birth_year") @db.SmallInt
+  countryCode       String     @default("MX") @map("country_code") @db.Char(2)
+  locale            String     @default("es-MX")
+  passwordChangedAt DateTime   @default(now()) @map("password_changed_at") @db.Timestamptz
+  createdAt         DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime   @updatedAt @map("updated_at") @db.Timestamptz
+
+  profile       UserProfile?
+  refreshTokens RefreshToken[]
+  oneTimeTokens OneTimeToken[]
+
+  @@map("users")
+  @@schema("identity")
+}
+
+/// Refresh tokens rotativos. `familyId` agrupa una cadena de rotaciones: si se
+/// reusa un token ya rotado, se revoca toda la familia (posible robo).
+model RefreshToken {
+  id         String    @id @default(uuid(7)) @db.Uuid
+  userId     String    @map("user_id") @db.Uuid
+  tokenHash  String    @unique @map("token_hash")
+  familyId   String    @map("family_id") @db.Uuid
+  expiresAt  DateTime  @map("expires_at") @db.Timestamptz
+  revokedAt  DateTime? @map("revoked_at") @db.Timestamptz
+  /// Se llenó al rotar: este token ya se usó una vez.
+  rotatedAt  DateTime? @map("rotated_at") @db.Timestamptz
+  deviceInfo String?   @map("device_info")
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([familyId])
+  @@map("refresh_tokens")
+  @@schema("identity")
+}
+
+enum OneTimeTokenPurpose {
+  password_reset
+  account_deletion
+
+  @@schema("identity")
+}
+
+/// Tokens de un solo uso enviados por correo (se guarda solo su hash).
+model OneTimeToken {
+  id        String              @id @default(uuid(7)) @db.Uuid
+  userId    String              @map("user_id") @db.Uuid
+  purpose   OneTimeTokenPurpose
+  tokenHash String              @unique @map("token_hash")
+  expiresAt DateTime            @map("expires_at") @db.Timestamptz
+  usedAt    DateTime?           @map("used_at") @db.Timestamptz
+  createdAt DateTime            @default(now()) @map("created_at") @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, purpose])
+  @@map("one_time_tokens")
+  @@schema("identity")
+}
+
+model UserProfile {
+  userId                   String   @id @map("user_id") @db.Uuid
+  displayName              String?  @map("display_name")
+  timezone                 String   @default("America/Mexico_City")
+  /// Cifrados a nivel de campo (FieldCryptoService). Opcionales; el tercero
+  /// debe estar informado (docs/02 Etapa 1).
+  emergencyContactNameEnc  String?  @map("emergency_contact_name_enc")
+  emergencyContactPhoneEnc String?  @map("emergency_contact_phone_enc")
+  updatedAt                DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+  @@schema("identity")
+}
+
+enum ConsentDocumentType {
+  privacy_notice
+  terms
+  sensitive_data
+  ai_disclaimer
+  research
+
+  @@schema("identity")
+}
+
+/// Versiones de textos legales. Una versión publicada nunca se edita: se
+/// publica otra. `isDraft` marca textos sin revisión legal [VALIDAR-LEGAL].
+model ConsentDocument {
+  id          String              @id @default(uuid(7)) @db.Uuid
+  type        ConsentDocumentType
+  version     String
+  locale      String              @default("es-MX")
+  title       String
+  content     String
+  contentHash String              @map("content_hash")
+  /// Debe aceptarse para usar la app (los opcionales, como investigación, no).
+  required    Boolean
+  isDraft     Boolean             @default(true) @map("is_draft")
+  publishedAt DateTime            @default(now()) @map("published_at") @db.Timestamptz
+
+  consents UserConsent[]
+
+  @@unique([type, version, locale])
+  @@map("consent_documents")
+  @@schema("identity")
+}
+
+/// Evidencia de consentimiento. Ligada al seudónimo, no a la cuenta: se
+/// conserva tras el borrado (ADR-0007) [VALIDAR-LEGAL: plazo].
+model UserConsent {
+  id         String    @id @default(uuid(7)) @db.Uuid
+  subjectId  String    @map("subject_id") @db.Uuid
+  documentId String    @map("document_id") @db.Uuid
+  granted    Boolean
+  grantedAt  DateTime  @default(now()) @map("granted_at") @db.Timestamptz
+  revokedAt  DateTime? @map("revoked_at") @db.Timestamptz
+  appVersion String?   @map("app_version")
+  ipHash     String?   @map("ip_hash")
+
+  document ConsentDocument @relation(fields: [documentId], references: [id])
+
+  @@index([subjectId, documentId])
+  @@map("user_consents")
+  @@schema("identity")
+}
+
+// ──────────────────────────────── ops ────────────────────────────────
+
+/// Bitácora append-only: un trigger rechaza UPDATE y DELETE (ver migración).
+/// Nunca guarda contenido sensible; solo quién, qué y cuándo.
+model AuditLog {
+  id             BigInt   @id @default(autoincrement())
+  actorSubjectId String?  @map("actor_subject_id") @db.Uuid
+  actorRole      String   @map("actor_role")
+  action         String
+  resourceType   String   @map("resource_type")
+  resourceId     String?  @map("resource_id")
+  reason         String?
+  ipHash         String?  @map("ip_hash")
+  at             DateTime @default(now()) @db.Timestamptz
+
+  @@index([actorSubjectId, at(sort: Desc)])
+  @@map("audit_log")
+  @@schema("ops")
+}
+
+enum DataRequestType {
+  access
+  rectification
+  cancellation
+  opposition
+  export
+
+  @@schema("ops")
+}
+
+enum DataRequestStatus {
+  received
+  completed
+  rejected
+
+  @@schema("ops")
+}
+
+/// Solicitudes ARCO (docs/09).
+model DataRequest {
+  id         String            @id @default(uuid(7)) @db.Uuid
+  subjectId  String            @map("subject_id") @db.Uuid
+  type       DataRequestType
+  status     DataRequestStatus @default(received)
+  createdAt  DateTime          @default(now()) @map("created_at") @db.Timestamptz
+  resolvedAt DateTime?         @map("resolved_at") @db.Timestamptz
+
+  @@index([subjectId])
+  @@map("data_requests")
+  @@schema("ops")
+}
+
+enum ClinicalApproval {
+  pending
+  approved
+
+  @@schema("ops")
+}
+
+/// Recursos de ayuda en crisis (docs/08). Solo desde fuentes oficiales, con
+/// URL y fecha de verificación; requieren aprobación clínica antes de producción.
+model SafetyResource {
+  id                String           @id @default(uuid(7)) @db.Uuid
+  countryCode       String           @map("country_code") @db.Char(2)
+  name              String
+  description       String?
+  phone             String?
+  sms               String?
+  url               String?
+  hours             String?
+  sortOrder         Int              @default(0) @map("sort_order")
+  verifiedSourceUrl String           @map("verified_source_url")
+  verifiedAt        DateTime         @map("verified_at") @db.Timestamptz
+  clinicalApproval  ClinicalApproval @default(pending) @map("clinical_approval")
+  active            Boolean          @default(true)
+
+  @@index([countryCode, active])
+  @@map("safety_resources")
+  @@schema("ops")
 }

@@ -1,0 +1,38 @@
+{
+  "_comment": "BORRADOR v0.1 [VALIDAR-LEGAL]. Textos tomados sin cambios de app/lib/features/onboarding/presentation/legal_texts.dart (2026-10-25). Una versión publicada no se edita: se publica otra.",
+  "version": "0.1-borrador",
+  "locale": "es-MX",
+  "isDraft": true,
+  "documents": [
+    {
+      "type": "privacy_notice",
+      "title": "Aviso de privacidad",
+      "required": true,
+      "content": "# AVISO DE PRIVACIDAD — SentIA\n\nÚltima actualización: [Fecha]\n\n## 1. Identidad y domicilio del responsable\n[Nombre/Razón Social], con domicilio en [Domicilio], es responsable del tratamiento de tus datos personales conforme a la LFPDPPP.\n\n## 2. Datos personales que recabamos\n### 2.1 Datos de identificación y contacto\nNombre, correo electrónico y contraseña (cifrada).\n### 2.2 Datos sensibles (Salud)\nSentIA trata datos personales sensibles: estados emocionales, contenido de conversaciones y entradas de diario. El tratamiento requiere tu consentimiento expreso.\n\n## 3. Finalidades del tratamiento\nPrimarias: Brindar acompañamiento emocional, seguimiento de bienestar y métricas para profesionales autorizados.\nSecundarias: Mejora de modelos de IA e investigación estadística (anonimizada).\n\n... [Ver documento completo para Derechos ARCO y Transferencias] ...\n"
+    },
+    {
+      "type": "terms",
+      "title": "Términos y condiciones",
+      "required": true,
+      "content": "# TÉRMINOS Y CONDICIONES DE USO — SentIA\n\n## 1. Aceptación de los términos\nAl usar SentIA, aceptas estos términos. Si no estás de acuerdo, no uses la app.\n\n## 2. Descripción del servicio y límites\nSentIA es una herramienta de acompañamiento emocional con IA. \n**NO ES UN SUSTITUTO DE DIAGNÓSTICO MÉDICO O PSICOLÓGICO PROFESIONAL.**\n\n**SI ESTÁS EN UNA SITUACIÓN DE CRISIS O RIESGO, LLAMA AL 911 O A UNA LÍNEA DE EMERGENCIA INMEDIATAMENTE.**\n\n## 3. Uso aceptable\nNo suplantar identidad ni intentar obtener diagnósticos médicos formales.\n"
+    },
+    {
+      "type": "sensitive_data",
+      "title": "Consentimiento para datos sensibles",
+      "required": true,
+      "content": "Entiendo que las conversaciones, mis estados emocionales registrados y mis entradas de diario pueden considerarse datos sensibles relacionados con mi salud, y autorizo expresamente a SentIA a procesarlos con el único fin de brindarme el servicio de acompañamiento descrito en el Aviso de Privacidad."
+    },
+    {
+      "type": "ai_disclaimer",
+      "title": "Uso de inteligencia artificial",
+      "required": true,
+      "content": "Entiendo que SentIA no sustituye atención médica ni psicológica profesional, que las respuestas del asistente son generadas por IA y pueden contener errores, y que en caso de crisis debo contactar servicios de emergencia o a un profesional de la salud, no depender de esta aplicación."
+    },
+    {
+      "type": "research",
+      "title": "Investigación y mejora (opcional)",
+      "required": false,
+      "content": "Autorizo el uso de mis datos, de forma anonimizada y agregada, para mejorar los modelos de IA y la investigación estadística del producto."
+    }
+  ]
+}

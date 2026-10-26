@@ -2,7 +2,10 @@ import { randomUUID } from 'node:crypto';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
+import { CryptoModule } from './common/crypto/crypto.module';
+import { MailModule } from './common/mail/mail.module';
 import { PrismaModule } from './common/prisma/prisma.module';
+import { AuditModule } from './modules/audit/audit.module';
 import { Env, validateEnv } from './config/env.schema';
 import { AuthModule } from './modules/auth/auth.module';
 import { HealthModule } from './modules/health/health.module';
@@ -38,6 +41,9 @@ import { UsersModule } from './modules/users/users.module';
       }),
     }),
     PrismaModule,
+    CryptoModule,
+    MailModule,
+    AuditModule,
     HealthModule,
     AuthModule,
     UsersModule,
